@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+
+    android:id="@+id/lin1"
+    android:background="@drawable/grey_line"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+<RelativeLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="350dp">
+
+    <android.support.v7.widget.RecyclerView
+        android:nestedScrollingEnabled="false"
+        android:id="@+id/rv_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
+
+
+    <CheckBox
+        android:layout_alignParentRight="true"
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:button="@drawable/favorites"
+        android:padding="15dp" />
+</RelativeLayout>
+    <LinearLayout
+        android:layout_marginBottom="15dp"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/name_item"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:text="El Yapımı Tesbih"
+            android:textColor="#2e363e"
+            android:textStyle="bold" />
+       <!--<TextView-->
+           <!--android:id="@+id/desc_item"-->
+           <!--android:layout_width="0dp"-->
+
+           <!--android:layout_height="wrap_content"-->
+           <!--android:layout_weight="3"-->
+           <!--android:padding="5dp"-->
+           <!--android:layout_margin="5dp"-->
+           <!--android:text="Ürün Açıklaması"/>-->
+       <TextView
+           android:id="@+id/price_item"
+           android:layout_width="0dp"
+           android:layout_weight="1"
+           android:drawableLeft="@drawable/ic_add_shopping_cart_black_24dp"
+           android:background="@drawable/button_buy"
+           android:padding="5dp"
+           android:text="100Tl"
+           android:textSize="14sp"
+           android:textColor="#fff"
+           android:layout_margin="5dp"
+           android:gravity="center"
+           android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <View
+        android:background="#E8E8E8"
+        android:layout_height="7dp"
+        android:layout_width="fill_parent"/>
+</LinearLayout>

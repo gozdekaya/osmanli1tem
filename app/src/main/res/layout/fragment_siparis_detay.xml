@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+
+    android:background="#FFF"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+<include layout="@layout/siparis_detay_toolbar"/>
+    <LinearLayout
+
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/grey_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/siparis_no"
+                android:textSize="14sp"
+                android:textColor="#000"
+                android:layout_margin="10dp" />
+            <TextView
+                android:id="@+id/orderno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/siparis_no"
+                android:textSize="14sp"
+                android:textColor="@color/blue"
+                android:layout_margin="10dp" />
+        </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/siparis_tarih"
+        android:textSize="14sp"
+        android:textColor="#000"
+        android:layout_margin="10dp" />
+    <TextView
+        android:id="@+id/orderdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/siparis_tarih"
+        android:textSize="14sp"
+        android:textColor="@color/blue"
+        android:layout_margin="10dp" />
+</LinearLayout>
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal">
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/toplam"
+             android:textSize="14sp"
+             android:textColor="#000"
+             android:layout_margin="10dp" />
+         <TextView
+             android:id="@+id/orderprice"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/toplam"
+             android:textSize="14sp"
+             android:textColor="@color/blue"
+             android:layout_margin="10dp" />
+     </LinearLayout>
+
+
+
+    </LinearLayout>
+<android.support.v7.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/rc_items">
+
+</android.support.v7.widget.RecyclerView>
+<LinearLayout
+    android:background="@drawable/grey_line"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/teslimat_adres"
+        android:textColor="@color/blue"
+        android:textSize="14sp"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:id="@+id/adrname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gözde Kaya"
+        android:layout_margin="10dp"
+        android:textColor="#000"
+        android:textSize="14sp"
+        />
+    <TextView
+         android:id="@+id/adres"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Güzelyalı mahallesi 765. sokak No:10 Şebnem Sitesi C blok Adana/TURKEY"
+        android:layout_margin="10dp"/>
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="05394794643"
+        android:layout_margin="10dp"/>
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/odeme_bilgileri"
+            android:layout_margin="10dp"
+            android:textColor="@color/blue"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_visa"
+            android:text="****1670-6 Taksit"
+            android:layout_margin="10dp"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
+</ScrollView>

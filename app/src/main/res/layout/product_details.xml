@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+android:orientation="vertical"
+    android:id="@+id/lin1"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/grey_line">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+
+        android:background="@drawable/grey_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <include layout="@layout/urundetay_toolbar"/>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+        <android.support.v4.view.ViewPager
+            android:id="@+id/slide_view"
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+
+        </android.support.v4.view.ViewPager>
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="15dp"
+        android:button="@drawable/favorites" />
+
+</RelativeLayout>
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible" />
+        <android.support.design.widget.TabLayout
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            app:tabBackground="@drawable/indicator_selector"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp" />
+    <TextView
+        android:id="@+id/product_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:text="El Yapımı Tesbih"
+        android:layout_marginLeft="10dp"
+        android:padding="10dp"
+        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:layout_marginLeft="10dp">
+            <TextView
+                android:id="@+id/normalprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:layout_marginTop="5dp"
+                android:textColor="#000"
+                android:textStyle="normal"
+                android:text="100TL"
+               />
+            <TextView
+                android:id="@+id/disprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:layout_marginTop="5dp"
+                android:textColor="#ed483f"
+                android:textStyle="normal"
+                android:text="100TL"/>
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:layout_marginTop="5dp"
+                android:textColor="#303030"
+                android:textStyle="normal"
+                android:background="@drawable/text_line"
+                android:text="100TL"/>
+        </LinearLayout>
+
+    <RelativeLayout
+
+        android:id="@+id/buy_btn"
+        android:layout_margin="10dp"
+        android:background="@drawable/button_buy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/add"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sepete_ekle"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:layout_centerInParent="true"
+            android:drawableLeft="@drawable/ic_addcart"/>
+
+    </RelativeLayout>
+
+<!--
+    <Button
+        android:id="@+id/addtocart"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:background="@drawable/button_buy"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_addcart"
+        android:text="Satın Al"
+        android:textColor="#fff"
+       />-->
+    </LinearLayout>
+    <TextView
+        android:padding="10dp"
+        android:id="@+id/aciklama_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/aciklama"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#000"
+        />
+    <TextView
+        android:textColor="#000"
+        android:id="@+id/aciklama_urun"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="jfjhjhjdfhgsjghjghsjgnfjgbjfbsjbjdbdjdgbjgbjgbggbjfbjbfjbfjbdjbdjjfbdjbfvjbvjdbfjbjdjbdfjbjfdbjbjbjbjfdbjdbjb"
+        android:padding="10dp"/>
+
+</LinearLayout>
+    </ScrollView>
+</LinearLayout>
