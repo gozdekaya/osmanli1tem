@@ -6,4 +6,5 @@
     <color name="colorSplash">#fff</color>
     <color name="blue">#2581e3</color>
     <color name="green">#65c07d</color>
+    <color name="grey">#bbbb</color>
 </resources>

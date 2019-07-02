@@ -1,6 +1,8 @@
 package Adapters;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import Fragments.FragmentUrunDetay;
 import Models.Favori;
 import Models.Product;
 
@@ -37,6 +40,18 @@ public class ProfileFavAdapter extends RecyclerView.Adapter<ProfileFavAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ProfileFavAdapter.ViewHolder viewHolder, int i) {
        final Product product=products.get(i).getProduct();
+       viewHolder.image.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               FragmentUrunDetay fragmentUrunDetay = new FragmentUrunDetay();
+               Bundle args=new Bundle();
+               String string=product.getId();
+               args.putString("ID",string);
+               fragmentUrunDetay.setArguments(args);
+               AppCompatActivity activity = (AppCompatActivity) v.getContext();
+               activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentUrunDetay).addToBackStack(null).commit();
+           }
+       });
         viewHolder.tvname.setText(product.getTitle());
         viewHolder.tvprice.setText(product.getPrice());
         Picasso.get().load(product.getProfile_image()).into(viewHolder.image);

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Osmanlitesbihcilik</string>
-    <string name="server_client_id">692839356868-9ih7n2nl939cnsji1vcjb05p2l3p70gm.apps.googleusercontent.com</string>
-    <string name="facebook_app_id">274366173393093</string>
-    <string name="fb_login_protocol_scheme">fb274366173393093</string>
+    <string name="server_client_id">863856124062-q2e6h4tdirgs4eeff378m8iq0654rpur.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">692215037866139</string>
+    <string name="fb_login_protocol_scheme">fb692215037866139</string>
     <string name="dil_sec">Select A Language</string>
     <string name="dil_degistir">Your Language is English</string>
     <string name="ana_sayfa">Home</string>

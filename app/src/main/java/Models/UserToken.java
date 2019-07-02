@@ -8,6 +8,10 @@ public class UserToken {
     private String access_token;
     private String refresh_token;
 
+    public UserToken(String access_token)
+    {
+        this.access_token = access_token;
+    }
 
     public UserToken(String token_type, Timestamp expires_in, String access_token, String refresh_token) {
         this.token_type = token_type;

@@ -14,6 +14,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
+import com.facebook.login.LoginManager;
+
 import com.gozde.osmanlitapp.R;
 import com.gozde.osmanlitapp.SharedPrefManager;
 
@@ -75,6 +78,10 @@ public class FragmentProfile extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         logout();
+                        if (AccessToken.getCurrentAccessToken() != null && com.facebook.Profile.getCurrentProfile() != null){
+                            //Logged in so show the login button
+                            LoginManager.getInstance().logOut();
+                        }
                     }
                 });
                 adb.setNegativeButton(R.string.iptal, new DialogInterface.OnClickListener() {

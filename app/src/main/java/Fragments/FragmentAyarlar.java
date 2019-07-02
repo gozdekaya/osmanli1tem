@@ -1,10 +1,12 @@
 package Fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 
 import com.gozde.osmanlitapp.R;
 import com.gozde.osmanlitapp.SharedPrefManager;
+import com.squareup.picasso.Picasso;
 import com.yarolegovich.discretescrollview.InfiniteScrollAdapter;
 import com.yarolegovich.discretescrollview.transform.ScaleTransformer;
 
@@ -29,10 +32,13 @@ import Adapters.SiparisAdapter;
 import Models.Favori;
 import Models.Product;
 import Models.Siparis;
+import Models.UserProfile;
 import Responses.FavoriResponse;
 import Responses.ProductResponse;
 import Responses.SiparisResponse;
+import Responses.UserProfileResponse;
 import Utils.ApiClient;
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,14 +47,23 @@ import retrofit2.Response;
  * A simple {@link Fragment} subclass.
  */
 public class FragmentAyarlar extends Fragment {
-ImageView settings;
-TextView pronum,favoriler;
+ImageView settings,more;
+CircleImageView imageuser;
+TextView pronum,favoriler,sipnum,siparislerim;
     private List<Favori> products;
     ProfileFavAdapter adapter;
 RecyclerView recyclerfav,recyclersip;
+    FragmentActivity fragmentActivity;
 LinearLayout linsip,linfav;
 List<Siparis> orders;
 SiparisAdapter adapters;
+Context mContext;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.mContext = context;
+    }
+
     public FragmentAyarlar() {
         // Required empty public constructor
     }
@@ -62,6 +77,9 @@ SiparisAdapter adapters;
             @Override
             public void onClick(View v) {
                 pronum.setTextColor(getResources().getColor(R.color.blue));
+                favoriler.setTextColor(getResources().getColor(R.color.blue));
+                sipnum.setTextColor(getResources().getColor(R.color.grey));
+                siparislerim.setTextColor(getResources().getColor(R.color.grey));
                 recyclersip.setVisibility(View.GONE);
                 recyclerfav.setVisibility(View.VISIBLE);
             }
@@ -70,12 +88,27 @@ SiparisAdapter adapters;
         linsip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pronum.setTextColor(getResources().getColor(R.color.grey));
+                favoriler.setTextColor(getResources().getColor(R.color.grey));
+                sipnum.setTextColor(getResources().getColor(R.color.blue));
+                siparislerim.setTextColor(getResources().getColor(R.color.blue));
                 recyclersip.setVisibility(View.VISIBLE);
                 recyclerfav.setVisibility(View.GONE);
             }
         });
+        siparislerim=view.findViewById(R.id.siparislerim);
+        more=view.findViewById(R.id.more);
+        more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragmentMore dialogFragmentMore = new DialogFragmentMore();
+                dialogFragmentMore.show(getFragmentManager(),"DialogMore");
+            }
+        });
+        sipnum=view.findViewById(R.id.sipnum);
         pronum=view.findViewById(R.id.pronum);
         favoriler=view.findViewById(R.id.favoriler);
+        imageuser=view.findViewById(R.id.imageuser);
         recyclersip=view.findViewById(R.id.recyclersip);
         settings=view.findViewById(R.id.settings);
         recyclerfav=view.findViewById(R.id.recyclerfav);
@@ -86,6 +119,20 @@ SiparisAdapter adapters;
             }
         });
 
+
+Call<UserProfileResponse> responseCall=ApiClient.getInstance(getContext()).getApi().userprofile("Bearer " + SharedPrefManager.getInstance(getContext()).getToken(),"application/json");
+responseCall.enqueue(new Callback<UserProfileResponse>() {
+    @Override
+    public void onResponse(Call<UserProfileResponse> call, Response<UserProfileResponse> response) {
+        UserProfile userProfile=response.body().getData();
+        Picasso.get().load(userProfile.getPicture()).into(imageuser);
+    }
+
+    @Override
+    public void onFailure(Call<UserProfileResponse> call, Throwable t) {
+
+    }
+});
         Call<SiparisResponse> call1=ApiClient.getInstance(getContext()).getApi().orders("Bearer " + SharedPrefManager.getInstance(getContext()).getToken(), "application/json");
         call1.enqueue(new Callback<SiparisResponse>() {
             @Override

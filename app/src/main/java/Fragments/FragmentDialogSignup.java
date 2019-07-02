@@ -1,11 +1,7 @@
 package Fragments;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -13,7 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,11 +25,9 @@ import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphRequestAsyncTask;
 import com.facebook.GraphResponse;
-import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -43,18 +36,20 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.Task;
-import com.google.gson.JsonObject;
 import com.gozde.osmanlitapp.R;
+import com.gozde.osmanlitapp.SharedPrefManager;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+
+import Models.UserToken;
+import Responses.SocialResponseAccessToken;
+import Utils.ApiClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FragmentDialogSignup extends DialogFragment implements View.OnClickListener,GoogleApiClient.OnConnectionFailedListener{
     ImageButton close_dialog;
@@ -67,6 +62,13 @@ public class FragmentDialogSignup extends DialogFragment implements View.OnClick
     GoogleSignInClient mGoogleSignInClient;
     private static final int code=100;
     SignInButton btnGoogleSignIn;
+    Context mContext;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.mContext = context;
+    }
 
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -121,7 +123,27 @@ public class FragmentDialogSignup extends DialogFragment implements View.OnClick
                         //  LoginManager.getInstance().logOut();
                         String a_token = response.getRequest().getAccessToken().getToken();
                         LoginManager.getInstance().logInWithReadPermissions(getActivity(), Arrays.asList("public_profile",EMAIL));
+                        Call<SocialResponseAccessToken> call = ApiClient.getInstance(getContext()).getApi().fblogin("application/json",a_token);
+                        call.enqueue(new Callback<SocialResponseAccessToken>() {
+                            @Override
+                            public void onResponse(Call<SocialResponseAccessToken> call, Response<SocialResponseAccessToken> response) {
+                                String accesstoken= response.body().getAccess_token();
+                                UserToken userToken = new UserToken(accesstoken);
 
+                                SharedPrefManager.getInstance(getActivity()).saveToken(userToken);
+                                Toast.makeText(mContext, R.string.basarili, Toast.LENGTH_SHORT).show();
+                                dismiss();
+
+                                getFragmentManager().beginTransaction().replace(R.id.container,new FragmentAyarlar()).commit();
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<SocialResponseAccessToken> call, Throwable t) {
+                                Log.d("hata", "hata");
+                                t.printStackTrace();
+                            }
+                        });
                     }
                 }).executeAsync();
                 Toast.makeText(getContext(), "Login Success with facebook", Toast.LENGTH_SHORT).show();
@@ -131,11 +153,13 @@ public class FragmentDialogSignup extends DialogFragment implements View.OnClick
             @Override
             public void onCancel() {
                 // App code
+                Log.d("cancel","asd");
             }
 
             @Override
             public void onError(FacebookException exception) {
                 // App code
+                Log.d("err", exception.toString());
             }
         });
 

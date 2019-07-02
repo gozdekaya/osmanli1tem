@@ -11,7 +11,6 @@ import Responses.CategorieResponse;
 import Responses.CountryResponse;
 import Responses.CreditCardResponse;
 import Responses.DeleteCartResponse;
-import Responses.DisProductResponse;
 import Responses.FavoriResponse;
 import Responses.KategoriUrunResponse;
 import Responses.LikeResponse;
@@ -22,7 +21,9 @@ import Responses.RegisterResponse;
 import Responses.SearchResponse;
 import Responses.SiparisDetayResponse;
 import Responses.SiparisResponse;
+import Responses.SocialResponseAccessToken;
 import Responses.UrunDetayResponse;
+import Responses.UserProfileResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -254,4 +255,21 @@ Call<UrunDetayResponse>urundetaylogin(
             @Header("Accept") String accept,
             @Path("orderId") String orderId
     );
+
+    //FB Login
+    @FormUrlEncoded
+    @POST("fb-login")
+    Call<SocialResponseAccessToken> fblogin(
+            @Header("Accept") String accept,
+         @Field("access_token") String accessToken
+    );
+
+
+    //USER BİLGİLERİ
+
+   @GET("user")
+    Call<UserProfileResponse> userprofile(
+           @Header("Authorization") String authorization,
+           @Header("Accept") String accep
+   );
 }
