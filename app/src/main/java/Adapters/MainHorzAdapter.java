@@ -1,10 +1,19 @@
 package Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,17 +24,31 @@ import android.widget.VideoView;
 import com.gozde.osmanlitapp.R;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
+import Fragments.FragmentUrunDetay;
 import Models.Media;
+import Models.Product;
 
 public class MainHorzAdapter extends RecyclerView.Adapter<MainHorzAdapter.ViewHolder> {
     private List<Media> mediaList;
+    List<Product> products;
     private LayoutInflater inflater;
+    DisplayMetrics displayMetrics;
+
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        this.displayMetrics =  recyclerView.getResources().getDisplayMetrics();
+
+    }
 
     public MainHorzAdapter(List<Media> mediaList, Context context) {
         this.mediaList = mediaList;
-        this.mediaList.add(new Media("http://api.osmanli.app-xr.com/storage/osm-m3u8/index.m3u8", 2));
+
+       this.mediaList.add(new Media("http://api.osmanli.app-xr.com/storage/osm-m3u8/index.m3u8", 2));
         this.inflater = LayoutInflater.from(context);
     }
 
@@ -39,8 +62,25 @@ public class MainHorzAdapter extends RecyclerView.Adapter<MainHorzAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MainHorzAdapter.ViewHolder viewHolder, int i) {
+  //      Product myPrduct=products.get(i);
         Media myMedia = mediaList.get(i);
-        viewHolder.setData(myMedia, i);
+        try {
+            viewHolder.setData(myMedia, i);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        viewHolder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                FragmentUrunDetay fragmentUrunDetay=new FragmentUrunDetay();
+//                Bundle args=new Bundle();
+//                String string=myPrduct.getId();
+//                args.putString("ID",string);
+//                fragmentUrunDetay.setArguments(args);
+//                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+//                activity.getSupportFragmentManager().beginTransaction().replace(R.id.container,fragmentUrunDetay).addToBackStack(null).commit();
+            }
+        });
     }
 
     @Override
@@ -77,7 +117,7 @@ public class MainHorzAdapter extends RecyclerView.Adapter<MainHorzAdapter.ViewHo
             placeholder = itemView.findViewById(R.id.placeholder);
         }
 
-        public void setData(Media selectedMedia, int position) {
+        public void setData(Media selectedMedia, int position) throws IOException {
             if (selectedMedia.getType() == 2) {
                 videoView.setVisibility(View.VISIBLE);
                 Uri uri = Uri.parse(selectedMedia.getUrl());
@@ -94,9 +134,20 @@ public class MainHorzAdapter extends RecyclerView.Adapter<MainHorzAdapter.ViewHo
             } else {
                 placeholder.setVisibility(View.INVISIBLE);
                 imageView.setVisibility(View.VISIBLE);
+
+
+
                 Picasso.get().load(Uri.parse(selectedMedia.getUrl())).into(imageView);
+
+                imageView.getLayoutParams().height =displayMetrics.widthPixels;
+                imageView.getLayoutParams().width = displayMetrics.widthPixels;
+                imageView.requestLayout();
+                Log.d("asd",String.valueOf(imageView.getLayoutParams().height));
+                Log.d("asd_1", String.valueOf(imageView.getLayoutParams().width));
             }
         }
     }
+
+
 }
 

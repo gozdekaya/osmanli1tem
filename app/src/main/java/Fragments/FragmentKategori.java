@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import Adapters.SubKategoriAdapter;
 import Models.KategoriUrun;
 
 import com.gozde.osmanlitapp.R;
@@ -29,7 +30,8 @@ import retrofit2.Response;
 
 public class FragmentKategori extends Fragment {
 private KategoriUrun mProducts;
-KategoriContentAdapter adapter;
+
+SubKategoriAdapter adapter;
 TextView kat_title;
 ImageButton buttonback;
 Boolean isConnected = false;
@@ -59,9 +61,9 @@ Boolean isConnected = false;
                public void onResponse(Call<KategoriUrunResponse> call, Response<KategoriUrunResponse> response) {
                    mProducts=response.body().getData();
                    kat_title.setText(title);
-                   adapter=new KategoriContentAdapter(mProducts.products);
+                   adapter=new SubKategoriAdapter(mProducts.subCategories);
                    recyclerView.setAdapter(adapter);
-                   recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+                   recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
 
 
 

@@ -12,8 +12,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -43,12 +45,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class FragmentAyarlar extends Fragment {
 ImageView settings,more;
 CircleImageView imageuser;
+LinearLayout layoutlin;
 TextView pronum,favoriler,sipnum,siparislerim;
     private List<Favori> products;
     ProfileFavAdapter adapter;
@@ -72,7 +77,14 @@ Context mContext;
 
         linfav=view.findViewById(R.id.linfav);
         linsip=view.findViewById(R.id.linsip);
-
+         layoutlin=view.findViewById(R.id.linmain);
+       layoutlin.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                hideKeyboard(v);
+                return false;
+            }
+        });
         linfav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,4 +185,12 @@ responseCall.enqueue(new Callback<UserProfileResponse>() {
             }
         });
         return view;
-}}
+
+}
+
+    protected void hideKeyboard(View view)
+    {
+        InputMethodManager in = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+}

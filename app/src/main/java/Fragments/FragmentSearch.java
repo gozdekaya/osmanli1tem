@@ -15,11 +15,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -51,6 +54,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
+
 public class FragmentSearch extends Fragment {
     private RecyclerView recyclerViews;
     LinearLayoutManager layoutManager1;
@@ -73,7 +78,7 @@ public class FragmentSearch extends Fragment {
     RecyclerView recyclerViewkat;
     private List<DisProduct> disProducts;
     private List<Categorie> mKategoriler;
-
+    LinearLayout mainlin;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -82,6 +87,14 @@ public class FragmentSearch extends Fragment {
         itemPicker = (DiscreteScrollView) view.findViewById(R.id.picker);
         layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
         recyclerViewkat = view.findViewById(R.id.recycler_kat);
+        mainlin=view.findViewById(R.id.linmain);
+        mainlin.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+              hideKeyboard(v);
+                return false;
+            }
+        });
         itemPicker.setOrientation(DSVOrientation.HORIZONTAL);
         itemPicker.addOnItemChangedListener(new DiscreteScrollView.OnItemChangedListener<RecyclerView.ViewHolder>() {
             @Override
@@ -256,6 +269,11 @@ public class FragmentSearch extends Fragment {
         this.mContext = context;
 
 
+    }
+    protected void hideKeyboard(View view)
+    {
+        InputMethodManager in = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
 

@@ -41,6 +41,7 @@ import retrofit2.Response;
 
 public class FragmentPayment extends Fragment {
     ProgressBar mProgressBar;
+    TextView sozlesme,sozlesme2;
     List<cardDetails> cards;
     EditText cardno,cvv,holder;
     ImageButton back;
@@ -60,6 +61,22 @@ public class FragmentPayment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_payment,container,false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
+        sozlesme=view.findViewById(R.id.sozlesme);
+         sozlesme2=view.findViewById(R.id.sozlesme2);
+         sozlesme2.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Bundle bundle = new Bundle();
+                 SatisFragment fragment = new SatisFragment();
+                 int a =spinnerFat.getSelectedItemPosition();
+                 int b =spinnerAdr.getSelectedItemPosition();
+                 bundle.putString("shippingAddressId", adresler.get(b).getId().toString());
+                 bundle.putString("billingAddressId", adresler.get(a).getId().toString());
+                 fragment.setArguments(bundle);
+                 getFragmentManager().beginTransaction().replace(R.id.container,fragment).commit();
+             }
+         });
          kartbilgi=view.findViewById(R.id.kartbilgi);
          devam=view.findViewById(R.id.show);
         mProgressBar=(ProgressBar)view.findViewById(R.id.progressBar1);
@@ -83,7 +100,17 @@ public class FragmentPayment extends Fragment {
                              cardDetails sc = (cardDetails) spinnerCard.getSelectedItem();
                              String cardId = sc.getId();
                              bundle.putString("cardId",cardId);
-
+                             kartlar=cards.get(x).getCardAlias() + " " + cards.get(x).getBinNumber() + " " + cards.get(x).getId();
+                             fatura =adresler.get(a).getName() + "-" +  adresler.get(a).getDescription() + " " +  adresler.get(a).getTown() + "/" +  adresler.get(a).getCity() + "/" +  adresler.get(a).getCountry().getTitle();
+                             teslimat =  adresler.get(b).getName() + "-" +  adresler.get(b).getDescription() + " " +  adresler.get(b).getTown() + "/" +  adresler.get(b).getCity() + "/" +  adresler.get(b).getCountry().getTitle();
+                             bundle.putString("fatura", fatura);
+                             bundle.putString("kart",kartlar);
+                             bundle.putString("teslimat",teslimat);
+                             bundle.putString("shippingAddressId", adresler.get(b).getId().toString());
+                             bundle.putString("billingAddressId", adresler.get(a).getId().toString());
+                             bundle.putBoolean("isRegisteredCard",isRegisteredCard);
+                             fragmentonizleme.setArguments(bundle);
+                             getFragmentManager().beginTransaction().replace(R.id.container,fragmentonizleme).addToBackStack(null).commit();
                          }else {
                              Toast.makeText(getContext(),"Lütfen Tüm Alanları Doldurunuz ve Kullanıcı Sözleşmesini Onaylayınız",Toast.LENGTH_SHORT).show();
 
@@ -96,6 +123,17 @@ public class FragmentPayment extends Fragment {
                              bundle.putString("cvc",cvv.getText().toString());
                              bundle.putString("expireMonth",c);
                              bundle.putString("expireYear", d);
+                             kartlar=cards.get(x).getCardAlias() + " " + cards.get(x).getBinNumber() + " " + cards.get(x).getId();
+                             fatura =adresler.get(a).getName() + "-" +  adresler.get(a).getDescription() + " " +  adresler.get(a).getTown() + "/" +  adresler.get(a).getCity() + "/" +  adresler.get(a).getCountry().getTitle();
+                             teslimat =  adresler.get(b).getName() + "-" +  adresler.get(b).getDescription() + " " +  adresler.get(b).getTown() + "/" +  adresler.get(b).getCity() + "/" +  adresler.get(b).getCountry().getTitle();
+                             bundle.putString("fatura", fatura);
+                             bundle.putString("kart",kartlar);
+                             bundle.putString("teslimat",teslimat);
+                             bundle.putString("shippingAddressId", adresler.get(b).getId().toString());
+                             bundle.putString("billingAddressId", adresler.get(a).getId().toString());
+                             bundle.putBoolean("isRegisteredCard",isRegisteredCard);
+                             fragmentonizleme.setArguments(bundle);
+                             getFragmentManager().beginTransaction().replace(R.id.container,fragmentonizleme).addToBackStack(null).commit();
                          }else {
                              Toast.makeText(getContext(),"Lütfen Tüm Alanları Doldurunuz ve Kullanıcı Sözleşmesini Onaylayınız",Toast.LENGTH_SHORT).show();
                          }
@@ -103,21 +141,24 @@ public class FragmentPayment extends Fragment {
 
                      }
 
-                     kartlar=cards.get(x).getCardAlias() + " " + cards.get(x).getBinNumber() + " " + cards.get(x).getId();
-                     fatura =adresler.get(a).getName() + "-" +  adresler.get(a).getDescription() + " " +  adresler.get(a).getTown() + "/" +  adresler.get(a).getCity() + "/" +  adresler.get(a).getCountry().getTitle();
-                     teslimat =  adresler.get(b).getName() + "-" +  adresler.get(b).getDescription() + " " +  adresler.get(b).getTown() + "/" +  adresler.get(b).getCity() + "/" +  adresler.get(b).getCountry().getTitle();
-                     bundle.putString("fatura", fatura);
-                     bundle.putString("kart",kartlar);
-                     bundle.putString("teslimat",teslimat);
-                     bundle.putString("shippingAddressId", adresler.get(b).getId().toString());
-                     bundle.putString("billingAddressId", adresler.get(a).getId().toString());
-                     bundle.putBoolean("isRegisteredCard",isRegisteredCard);
-                     fragmentonizleme.setArguments(bundle);
-                     getFragmentManager().beginTransaction().replace(R.id.container,fragmentonizleme).addToBackStack(null).commit();
+
                  }
 
 
          });
+        sozlesme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Bundle bundle = new Bundle();
+      SozlesmeFragment fragment = new SozlesmeFragment();
+//                int a =spinnerFat.getSelectedItemPosition();
+//                int b =spinnerAdr.getSelectedItemPosition();
+//                bundle.putString("shippingAddressId", adresler.get(b).getId().toString());
+//                bundle.putString("billingAddressId", adresler.get(a).getId().toString());
+//                fragment.setArguments(bundle);
+                getFragmentManager().beginTransaction().replace(R.id.container,fragment).commit();
+            }
+        });
          cvv=view.findViewById(R.id.cvv);
          cardno=view.findViewById(R.id.kartno);
          holder=view.findViewById(R.id.kartholder);
@@ -126,6 +167,7 @@ public class FragmentPayment extends Fragment {
         kart_gir=view.findViewById(R.id.kart_gir);
         kartgiris=view.findViewById(R.id.kart_giris);
         cb2=view.findViewById(R.id.checkbox2);
+
         kayitli_kart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

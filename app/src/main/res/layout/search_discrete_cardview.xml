@@ -4,7 +4,7 @@
     android:background="@drawable/grey_border"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="300dp"
-    android:layout_height="220dp"
+    android:layout_height="270dp"
     android:layout_margin="10dp"
     android:layout_gravity="center"
     android:orientation="vertical">

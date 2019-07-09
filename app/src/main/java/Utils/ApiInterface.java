@@ -15,6 +15,7 @@ import Responses.FavoriResponse;
 import Responses.KategoriUrunResponse;
 import Responses.LikeResponse;
 import Responses.LoginResponse;
+import Responses.OnayResponse;
 import Responses.PayJson;
 import Responses.ProductResponse;
 import Responses.RegisterResponse;
@@ -22,6 +23,7 @@ import Responses.SearchResponse;
 import Responses.SiparisDetayResponse;
 import Responses.SiparisResponse;
 import Responses.SocialResponseAccessToken;
+import Responses.SozlesmeResponse;
 import Responses.UrunDetayResponse;
 import Responses.UserProfileResponse;
 import retrofit2.Call;
@@ -270,6 +272,27 @@ Call<UrunDetayResponse>urundetaylogin(
    @GET("user")
     Call<UserProfileResponse> userprofile(
            @Header("Authorization") String authorization,
-           @Header("Accept") String accep
+           @Header("Accept") String accept
    );
+
+   //Sozleşme
+    @FormUrlEncoded
+    @POST("sales-agreement")
+    Call<SozlesmeResponse> satissoz(
+            @Header("Authorization") String authorization,
+            @Header("Accept") String accept,
+            @Field("shipping_address") String shipping_address,
+            @Field("billing_address") String billing_address
+    );
+
+    @FormUrlEncoded
+    @POST("preliminary-agreement")
+    Call<OnayResponse> onaysoz(
+            @Header("Authorization") String authorization,
+            @Header("Accept") String accept,
+            @Field("shipping_address") String shipping_address,
+            @Field("billing_address") String billing_address
+
+
+    );
 }

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import Fragments.FragmentUrunler;
 import Models.Categorie;
 import com.gozde.osmanlitapp.R;
 import com.squareup.picasso.Picasso;
@@ -45,15 +46,34 @@ public class KategoriAdapter extends RecyclerView.Adapter<KategoriAdapter.ViewHo
       viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-              FragmentKategori fragmentKategori = new FragmentKategori();
-              Bundle args=new Bundle();
-              int id = mKategoriler.get(i).getId();
-              args.putInt("id",id);
-              args.putString("title",mKategoriler.get(i).getTitle());
-              fragmentKategori.setArguments(args);
 
-              AppCompatActivity activity = (AppCompatActivity) v.getContext();
-              activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentKategori).addToBackStack(null).commit();
+              Categorie category = mKategoriler.get(i);
+
+              if (category.getSubCategories().size() > 0){
+                  //kategori sayfası
+                  FragmentKategori fragmentKategori = new FragmentKategori();
+                  Bundle args=new Bundle();
+                  int id = category.getId();
+                  args.putInt("id",id);
+                  args.putString("title",mKategoriler.get(i).getTitle());
+                  fragmentKategori.setArguments(args);
+                  AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                  activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentKategori).addToBackStack(null).commit();
+              } else {
+               //ürün sayfası
+                  FragmentUrunler fragmentUrunler = new FragmentUrunler();
+                  Bundle args1=new Bundle();
+                  int id = mKategoriler.get(i).getId();
+                  args1.putInt("id",id);
+                  fragmentUrunler.setArguments(args1);
+                  AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                  activity.getSupportFragmentManager().beginTransaction().replace(R.id.container, fragmentUrunler).addToBackStack(null).commit();
+
+              }
+
+
+
+
           }
       });
 

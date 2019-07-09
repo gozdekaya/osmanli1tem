@@ -97,14 +97,14 @@ public class FragmentDialogSignup extends DialogFragment implements View.OnClick
 
 
 
-         btnGoogleSignIn = view.findViewById(R.id.btnGoogleSignIn);
-         mGoogleSignInClient = GoogleSignIn.getClient(getContext(), signInOptions);
-        btnGoogleSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                googleSocialLogin();
-            }
-        });
+//         btnGoogleSignIn = view.findViewById(R.id.btnGoogleSignIn);
+//         mGoogleSignInClient = GoogleSignIn.getClient(getContext(), signInOptions);
+//        btnGoogleSignIn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                googleSocialLogin();
+//            }
+//        });
 
         callbackManager = CallbackManager.Factory.create();
         loginButton = (LoginButton) view.findViewById(R.id.login_button);

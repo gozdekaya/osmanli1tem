@@ -8,12 +8,14 @@ public class KategoriUrun {
     public String title;
     public String media;
     public List<Product> products;
+    public List<Categorie> subCategories;
 
-    public KategoriUrun(int id, String title, String media, List<Product> products) {
+    public KategoriUrun(int id, String title, String media, List<Product> products, List<Categorie> subCategories) {
         this.id = id;
         this.title = title;
         this.media = media;
         this.products = products;
+        this.subCategories = subCategories;
     }
 
     public int getId() {
@@ -47,4 +49,13 @@ public class KategoriUrun {
     public void setProducts(List<Product> products) {
         this.products = products;
     }
+
+    public List<Categorie> getSubCategories() {
+        return subCategories;
+    }
+
+    public void setSubCategories(List<Categorie> subCategories) {
+        this.subCategories = subCategories;
+    }
+
 }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:focusableInTouchMode="true"
+    android:id="@+id/linmain"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -15,6 +17,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:visibility="gone"
                 android:id="@+id/more"
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -111,13 +114,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <ImageView
-            android:background="#D3D3D3"
+            android:background="#DCDCDC"
             android:layout_width="0dp"
             android:src="@drawable/ic_search_b"
             android:layout_weight="1"
-
             android:padding="5dp"
-            android:layout_height="29dp" />
+            android:layout_height="25dp" />
         <EditText
             android:layout_weight="9"
             android:id="@+id/search"

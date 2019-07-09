@@ -29,7 +29,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/sepetim"
-        android:src="@drawable/profilecartt"
+
+        android:src="@drawable/placeholder"
         android:layout_marginRight="1dp"
         android:layout_marginLeft="5dp"
         android:layout_width="100dp"
@@ -39,7 +40,7 @@
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Sepetim"
+    android:text="@string/adres_ekle"
     android:textColor="#fff"
     android:textStyle="normal"
     android:layout_gravity="center_horizontal"
@@ -54,16 +55,16 @@
 
           <de.hdodenhof.circleimageview.CircleImageView
               android:id="@+id/siparislerim"
-              android:src="@drawable/shopbag"
+              android:src="@drawable/lock"
               android:layout_marginRight="1dp"
               android:layout_marginLeft="5dp"
-              android:layout_width="100dp"
-              android:layout_height="100dp"
+              android:layout_width="110dp"
+              android:layout_height="110dp"
              />
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="@string/siparislerim"
+              android:text="@string/kart_ekle"
               android:textColor="#fff"
               android:textStyle="normal"
               android:layout_gravity="center_horizontal"
@@ -79,16 +80,16 @@
 
           <de.hdodenhof.circleimageview.CircleImageView
               android:id="@+id/kartlarim"
-              android:src="@drawable/profilecard"
+              android:src="@drawable/shop"
               android:layout_marginRight="1dp"
               android:layout_marginLeft="5dp"
-              android:layout_width="110dp"
-              android:layout_height="110dp"
+              android:layout_width="100dp"
+              android:layout_height="100dp"
               />
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="@string/kayitli_kart"
+              android:text="@string/sepet"
               android:textColor="#fff"
               android:textStyle="normal"
               android:layout_gravity="center_horizontal"

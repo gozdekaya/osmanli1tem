@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="300dp">
+    android:layout_height="350dp">
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="350dp"
         android:id="@+id/image_slide"
         android:scaleType="fitXY"
         android:visibility="gone">
@@ -17,6 +17,6 @@
 
         android:id="@+id/video_slide"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="350dp"
         android:visibility="gone"/>
 </LinearLayout>

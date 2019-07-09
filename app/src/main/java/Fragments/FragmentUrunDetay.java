@@ -129,6 +129,7 @@ normalprice=view.findViewById(R.id.normalprice);
              //AppCompatActivity activity1 = (AppCompatActivity) buttonView.getContext();
              //activity1.getSupportFragmentManager().beginTransaction().replace(R.id.container,fragmentDialogSignup).addToBackStack(null).commit();
          }else {
+             cbfav.setButtonDrawable(R.drawable.ic_favorite_black_24dp);
              FragmentDialogSignup dialogSignup = new FragmentDialogSignup();
              dialogSignup.show(fragmentActivity.getSupportFragmentManager(),"DialogSignup");
          }

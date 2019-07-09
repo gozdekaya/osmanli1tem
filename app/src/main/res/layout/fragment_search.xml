@@ -4,6 +4,7 @@
     android:background="#fff"
     xmlns:android="http://schemas.android.com/apk/res/android" >
     <LinearLayout
+        android:id="@+id/linmain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -30,14 +31,14 @@
                 android:src="@drawable/ic_search_b"
                 android:layout_weight="1"
                 android:padding="5dp"
-                android:layout_height="29dp" />
+                android:layout_height="25dp" />
             <EditText
                 android:layout_weight="9"
                 android:id="@+id/search"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionSearch"
-
+                android:singleLine="true"
                 android:padding="5dp"
                 android:hint="@string/ara"
                 android:textSize="14sp"

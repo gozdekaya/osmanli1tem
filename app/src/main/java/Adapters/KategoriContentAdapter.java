@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import Fragments.FragmentUrunDetay;
+import Models.Categorie;
 import Models.Product;
 import com.gozde.osmanlitapp.R;
 import com.squareup.picasso.Picasso;
@@ -21,8 +22,10 @@ public class KategoriContentAdapter extends RecyclerView.Adapter<KategoriContent
 
     private List<Product> mProducts;
 
+
     public KategoriContentAdapter(List<Product> mProducts) {
         this.mProducts = mProducts;
+
     }
 
     @NonNull
@@ -35,12 +38,14 @@ public class KategoriContentAdapter extends RecyclerView.Adapter<KategoriContent
     @Override
     public void onBindViewHolder(@NonNull KategoriContentAdapter.ViewHolder viewHolder, final int i) {
         Product product = mProducts.get(i);
+
        viewHolder.product_title.setText(product.getTitle());
         Picasso.get().load(product.getProfile_image()).into(viewHolder.product_image);
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 FragmentUrunDetay fragmentUrunDetay = new FragmentUrunDetay();
                 Bundle args=new Bundle();
                 String str=mProducts.get(i).getId();
