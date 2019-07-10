@@ -46,7 +46,7 @@ public class SiparisAdapter extends RecyclerView.Adapter<SiparisAdapter.ViewHold
        viewHolder.tarih.setText(orders.get(i).getDate());
       // viewHolder.toplam.setText(orders.get(i).getToplam);
      LinearLayoutManager   layoutManager1 = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        SiparisHorzAdapter adapter=new SiparisHorzAdapter(orders.get(i).getItems());
+        SiparisHorzAdapter adapter=new SiparisHorzAdapter(orders.get(i).getItems(),context);
         viewHolder.rchorz.setAdapter(adapter);
         viewHolder.rchorz.setLayoutManager(layoutManager1);
       viewHolder.detay.setOnClickListener(new View.OnClickListener() {

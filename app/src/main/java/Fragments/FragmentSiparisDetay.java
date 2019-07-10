@@ -68,7 +68,7 @@ public class FragmentSiparisDetay extends Fragment {
             public void onResponse(Call<SiparisDetayResponse> call, Response<SiparisDetayResponse> response) {
                       Siparis siparis =response.body().getData();
 
-                      adapter=new SiparisDetayAdapter(siparis.getItems());
+                      adapter=new SiparisDetayAdapter(siparis.getItems(),mContext);
                       recyclerView.setLayoutManager(layoutManager);
                       recyclerView.setAdapter(adapter);
                       orderno.setText( siparis.getOrderNumber());

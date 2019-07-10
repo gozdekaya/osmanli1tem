@@ -5,10 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+<include layout="@layout/mesafe_toolbar"/>
 
-
-
+<android.support.v4.widget.Space
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:id="@+id/spacer"/>
     <WebView
+        android:layout_below="@+id/spacer"
+        android:layout_margin="20dp"
         android:id="@+id/web_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

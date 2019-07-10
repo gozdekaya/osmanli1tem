@@ -39,6 +39,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:fontFamily="@font/allerta"
             android:id="@+id/name_item"
             android:layout_width="0dp"
             android:layout_weight="3"

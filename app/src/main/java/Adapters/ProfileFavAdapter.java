@@ -1,5 +1,6 @@
 package Adapters;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.gozde.osmanlitapp.R;
 import com.squareup.picasso.Picasso;
 
@@ -23,9 +25,10 @@ import Models.Product;
 
 public class ProfileFavAdapter extends RecyclerView.Adapter<ProfileFavAdapter.ViewHolder>{
     List<Favori> products = new ArrayList<>();
-
-    public ProfileFavAdapter(List<Favori> products) {
+Context mContetx;
+    public ProfileFavAdapter(List<Favori> products,Context mContetx) {
         this.products = products;
+        this.mContetx=mContetx;
     }
 
     @NonNull
@@ -54,7 +57,9 @@ public class ProfileFavAdapter extends RecyclerView.Adapter<ProfileFavAdapter.Vi
        });
         viewHolder.tvname.setText(product.getTitle());
         viewHolder.tvprice.setText(product.getPrice());
-        Picasso.get().load(product.getProfile_image()).into(viewHolder.image);
+        Glide.with(mContetx).load(product.getProfile_image())
+                .into(viewHolder.image);
+       // Picasso.get().load(product.getProfile_image()).into(viewHolder.image);
     }
 
     @Override

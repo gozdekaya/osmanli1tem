@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import Fragments.FragmentUrunler;
 import Models.Categorie;
+
+import com.bumptech.glide.Glide;
 import com.gozde.osmanlitapp.R;
 import com.squareup.picasso.Picasso;
 
@@ -76,8 +78,9 @@ public class KategoriAdapter extends RecyclerView.Adapter<KategoriAdapter.ViewHo
 
           }
       });
+        Glide.with(mContext).load(mKategoriler.get(i).getMedia()).into(viewHolder.kategorimage);
 
-       Picasso.get().load(mKategoriler.get(i).getMedia()).into(viewHolder.kategorimage);
+    //   Picasso.get().load(mKategoriler.get(i).getMedia()).into(viewHolder.kategorimage);
 
 
     }

@@ -107,6 +107,8 @@ public class FragmentCart extends Fragment {
                             totalitem.setVisibility(View.INVISIBLE);
                             button.setVisibility(View.INVISIBLE);
                         } else {
+                            urun.setVisibility(View.VISIBLE);
+                            tire.setVisibility(View.VISIBLE);
                             bosText.setVisibility(View.INVISIBLE);
                         }
                         adapter.setItems(items.getCartList());
@@ -120,8 +122,8 @@ public class FragmentCart extends Fragment {
                         button.setVisibility(View.GONE);
                         login.setVisibility(View.VISIBLE);
                         logintext.setVisibility(View.VISIBLE);
-                        urun.setVisibility(View.VISIBLE);
-                        tire.setVisibility(View.VISIBLE);
+                        urun.setVisibility(View.GONE);
+                        tire.setVisibility(View.GONE);
 
                        // Toast.makeText(mContext, R.string.sepet_gormek_icin, Toast.LENGTH_LONG).show();
                     }

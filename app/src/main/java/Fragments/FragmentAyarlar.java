@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.gozde.osmanlitapp.R;
 import com.gozde.osmanlitapp.SharedPrefManager;
 import com.squareup.picasso.Picasso;
@@ -137,7 +138,8 @@ responseCall.enqueue(new Callback<UserProfileResponse>() {
     @Override
     public void onResponse(Call<UserProfileResponse> call, Response<UserProfileResponse> response) {
         UserProfile userProfile=response.body().getData();
-        Picasso.get().load(userProfile.getPicture()).into(imageuser);
+        Glide.with(mContext).load(userProfile.getPicture()).into(imageuser);
+      //  Picasso.get().load(userProfile.getPicture()).into(imageuser);
     }
 
     @Override
@@ -172,7 +174,7 @@ responseCall.enqueue(new Callback<UserProfileResponse>() {
 
 
                 products=response.body().getData();
-                adapter=new ProfileFavAdapter(products);
+                adapter=new ProfileFavAdapter(products,mContext);
                 recyclerfav.setAdapter(adapter);
                 recyclerfav.setLayoutManager(new GridLayoutManager(getContext(),2));
 

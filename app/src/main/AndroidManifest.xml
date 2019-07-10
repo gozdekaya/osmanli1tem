@@ -10,7 +10,7 @@
     <application
         android:hardwareAccelerated="false"
         android:largeHeap="true"
-        android:windowSoftInputMode="adjustPan"
+
         android:launchMode="singleTask"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -31,6 +31,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:windowSoftInputMode="adjustPan"
             android:name=".MainActivity"
             android:screenOrientation="nosensor">
             <intent-filter>

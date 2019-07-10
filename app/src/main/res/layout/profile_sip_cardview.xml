@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
-
+            android:fontFamily="@font/allerta"
             android:layout_weight="2"
             android:id="@+id/tv_tarih"
             android:layout_width="wrap_content"
@@ -22,7 +22,7 @@
             android:text="Sipariş Tarihi"
             android:layout_margin="5dp"/>
         <TextView
-
+            android:fontFamily="@font/allerta"
             android:id="@+id/tv_tutar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,6 +30,7 @@
             android:layout_margin="5dp"
             android:layout_weight="2"/>
         <TextView
+            android:fontFamily="@font/allerta"
             android:id="@+id/display_detay"
             android:gravity="center_horizontal"
             android:textColor="#000"

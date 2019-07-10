@@ -1,5 +1,6 @@
 package Adapters;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.gozde.osmanlitapp.R;
 import com.squareup.picasso.Picasso;
 
@@ -21,9 +23,11 @@ import Models.Product;
 
 public class RecentAdapter extends RecyclerView.Adapter<RecentAdapter.ViewHolder> {
  List<Product> mProducts;
+ Context mContext;
 
-    public RecentAdapter(List<Product> mProducts) {
+    public RecentAdapter(List<Product> mProducts,Context mContext) {
         this.mProducts = mProducts;
+        this.mContext=mContext;
     }
 
     @NonNull
@@ -50,7 +54,8 @@ public class RecentAdapter extends RecyclerView.Adapter<RecentAdapter.ViewHolder
      viewHolder.name.setText(mProducts.get(i).getTitle());
      viewHolder.price.setText(mProducts.get(i).getPrice());
      viewHolder.disprice.setText(mProducts.get(i).getDiscount().getDiscounted_price());
-     Picasso.get().load(mProducts.get(i).getProfile_image()).into(viewHolder.image);
+        Glide.with(mContext).load(mProducts.get(i).getProfile_image()).into(viewHolder.image);
+    // Picasso.get().load(mProducts.get(i).getProfile_image()).into(viewHolder.image);
     }
 
     @Override

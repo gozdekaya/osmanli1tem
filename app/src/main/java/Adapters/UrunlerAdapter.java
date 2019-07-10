@@ -1,5 +1,6 @@
 package Adapters;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.gozde.osmanlitapp.R;
 import com.squareup.picasso.Picasso;
 
@@ -20,9 +22,11 @@ import Models.Product;
 
 public class UrunlerAdapter extends RecyclerView.Adapter<UrunlerAdapter.ViewHolder> {
     List<Product> mProducts;
+    Context mContext;
 
-    public UrunlerAdapter(List<Product> mProducts) {
+    public UrunlerAdapter(List<Product> mProducts,Context mContext) {
         this.mProducts = mProducts;
+        this.mContext=mContext;
     }
 
     @NonNull
@@ -49,7 +53,8 @@ public class UrunlerAdapter extends RecyclerView.Adapter<UrunlerAdapter.ViewHold
               activity.getSupportFragmentManager().beginTransaction().replace(R.id.container,fragmentUrunDetay).addToBackStack(null).commit();
           }
       });
-        Picasso.get().load(product.getProfile_image()).into(viewHolder.image);
+        Glide.with(mContext).load(product.getProfile_image()).into(viewHolder.image);
+      //  Picasso.get().load(product.getProfile_image()).into(viewHolder.image);
     }
 
     @Override

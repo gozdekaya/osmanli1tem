@@ -7,6 +7,7 @@
 <include layout="@layout/profil_ayarlar_toolbar"></include>
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:fontFamily="@font/allerta"
         android:id="@+id/dil_degistir"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

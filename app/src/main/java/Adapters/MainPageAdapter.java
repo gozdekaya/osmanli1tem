@@ -58,6 +58,7 @@ public class MainPageAdapter extends RecyclerView.Adapter<MainPageAdapter.ViewHo
 
     }
 
+
     @NonNull
     @Override
     public MainPageAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -66,6 +67,8 @@ public class MainPageAdapter extends RecyclerView.Adapter<MainPageAdapter.ViewHo
       LinearLayout layout=(LinearLayout)view.findViewById(R.id.lin1);
         return holder;
     }
+
+
 
     @Override
     public void onBindViewHolder(@NonNull final MainPageAdapter.ViewHolder viewHolder, int i) {
@@ -181,8 +184,6 @@ public class MainPageAdapter extends RecyclerView.Adapter<MainPageAdapter.ViewHo
         return productList.size();
     }
 
-
-
     public class ViewHolder extends RecyclerView.ViewHolder {
        TextView price,name,desc;
        CheckBox cbfav;
@@ -197,11 +198,13 @@ public class MainPageAdapter extends RecyclerView.Adapter<MainPageAdapter.ViewHo
         }
         public void setData(Product selectedProduct,int position){
             final MainHorzAdapter mRecycAdapter = new MainHorzAdapter(selectedProduct.getMedia(),context);
+            mRecycAdapter.setHasStableIds(true);
             rv.setAdapter(mRecycAdapter);
             final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
             linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             rv.setLayoutManager(linearLayoutManager);
             rv.setHasFixedSize(true);
+            rv.setItemViewCacheSize(5);
             rv.setRecycledViewPool(new RecyclerView.RecycledViewPool());
             if (rv.getOnFlingListener()==null){
                 SnapHelper snapHelper = new PagerSnapHelper();
@@ -226,7 +229,7 @@ public class MainPageAdapter extends RecyclerView.Adapter<MainPageAdapter.ViewHo
 
     @Override
     public long getItemId(int position) {
-        return position;
+        return super.getItemId(position);
     }
 
     @Override

@@ -9,6 +9,7 @@
     android:layout_gravity="center"
     android:orientation="vertical">
 <TextView
+    android:fontFamily="@font/allerta"
     android:textStyle="bold"
     android:id="@+id/name"
     android:layout_width="wrap_content"
@@ -28,6 +29,7 @@
         android:layout_weight="9"
         android:layout_gravity="center_horizontal"/>
     <TextView
+        android:fontFamily="@font/allerta"
         android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

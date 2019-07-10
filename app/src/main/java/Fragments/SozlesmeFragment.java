@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.gozde.osmanlitapp.R;
@@ -23,6 +25,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SozlesmeFragment extends Fragment {
+    ImageButton back;
    String html1="<p>PRELIMINARY INFORMATION FORM FOR CONSUMER LEGISLATION REQUIREMENTS<br />1. INFORMATION ABOUT THE SELLER<br />Commercial Title:<br />Address:<br />Phone:<br />Email Address:</p>\n" +
            "<p>2. BUYER INFORMATION<br />Name Surname / Title:<br />Delivery Address:<br />Phone:<br />Email:</p>\n" +
            "<p>3.SUBJECT<br />Subject of this Preliminary Information Form; Informing the purchaser in accordance with the provisions of the Law on the Protection of Consumers numbered 6502 and the Regulation on Distance Contracts published in the Official Gazette dated November 27, 2014 and numbered 29188 regarding the sale and delivery of the product or products whose qualification and sales price is specified below.</p>\n" +
@@ -67,7 +70,13 @@ public class SozlesmeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_sozlesme,container,false);
              webView=view.findViewById(R.id.web_view);
-
+back=view.findViewById(R.id.back);
+back.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        getFragmentManager().beginTransaction().replace(R.id.container,new FragmentPayment()).commit();
+    }
+});
         WebSettings webSettings = webView.getSettings();
         webSettings.setMinimumFontSize(45);
         webSettings.setLoadWithOverviewMode(true);

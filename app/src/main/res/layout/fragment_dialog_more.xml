@@ -38,6 +38,7 @@
         app:civ_border_color="#bbbb"
         app:civ_border_width="0.5dp"/>
 <TextView
+    android:fontFamily="@font/allerta"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/adres_ekle"
@@ -62,6 +63,7 @@
               android:layout_height="110dp"
              />
           <TextView
+              android:fontFamily="@font/allerta"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:text="@string/kart_ekle"
@@ -87,6 +89,7 @@
               android:layout_height="100dp"
               />
           <TextView
+              android:fontFamily="@font/allerta"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:text="@string/sepet"

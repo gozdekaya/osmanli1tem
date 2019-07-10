@@ -8,6 +8,7 @@
     android:orientation="vertical">
     <include layout="@layout/kart_ekle_toolbar"/>
 <EditText
+    android:fontFamily="@font/allerta"
     android:id="@+id/cardname"
     android:padding="10dp"
     android:layout_width="match_parent"
@@ -17,6 +18,7 @@
     android:textSize="16sp"
     android:layout_margin="10dp"/>
     <EditText
+        android:fontFamily="@font/allerta"
         android:id="@+id/holdername"
         android:padding="10dp"
         android:layout_width="match_parent"
@@ -26,6 +28,7 @@
         android:textSize="16sp"
         android:layout_margin="10dp"/>
     <EditText
+        android:fontFamily="@font/allerta"
         android:id="@+id/cardnumber"
         android:padding="10dp"
         android:layout_width="match_parent"
@@ -36,6 +39,7 @@
         android:textSize="16sp"
         android:layout_margin="10dp"/>
     <TextView
+        android:fontFamily="@font/allerta"
         android:padding="10dp"
         android:textColor="#443d1f"
         android:layout_width="wrap_content"

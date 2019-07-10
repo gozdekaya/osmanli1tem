@@ -100,9 +100,10 @@ public class FragmentHome extends Fragment {
                     nextPage=(String) response.body().getData().getPagination().getNext_page_url();
 
                     adapter=new MainPageAdapter(data.getProducts(),mContext, fragmentActivity.getSupportFragmentManager());
+                    adapter.setHasStableIds(true);
                     recyclerView1.setAdapter(adapter);
                     recyclerView1.setHasFixedSize(true);
-                    recyclerView1.setItemViewCacheSize(15);
+                    recyclerView1.setItemViewCacheSize(25);
                     mProgress.setVisibility(View.GONE);
 
                 }

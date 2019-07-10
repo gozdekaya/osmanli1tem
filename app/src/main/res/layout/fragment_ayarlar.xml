@@ -62,6 +62,7 @@
         android:orientation="vertical"
         android:layout_margin="15dp">
         <TextView
+            android:fontFamily="@font/allerta"
             android:id="@+id/pronum"
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
@@ -70,6 +71,7 @@
             android:textSize="20sp"
             android:background="@null"/>
         <TextView
+            android:fontFamily="@font/allerta"
             android:id="@+id/favoriler"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -83,6 +85,7 @@
     android:id="@+id/linsip"
     android:layout_margin="15dp">
     <TextView
+        android:fontFamily="@font/allerta"
         android:id="@+id/sipnum"
         android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
@@ -91,6 +94,7 @@
         android:textSize="20sp"
         android:background="@null"/>
     <TextView
+        android:fontFamily="@font/allerta"
         android:id="@+id/siparislerim"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -100,6 +104,7 @@
 
 </LinearLayout>
     <TextView
+        android:fontFamily="@font/allerta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -119,8 +124,9 @@
             android:src="@drawable/ic_search_b"
             android:layout_weight="1"
             android:padding="5dp"
-            android:layout_height="25dp" />
+            android:layout_height="match_parent" />
         <EditText
+            android:fontFamily="@font/allerta"
             android:layout_weight="9"
             android:id="@+id/search"
             android:layout_width="0dp"

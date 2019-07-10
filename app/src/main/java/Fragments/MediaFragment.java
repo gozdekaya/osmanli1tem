@@ -1,5 +1,6 @@
 package Fragments;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.VideoView;
 
+import com.bumptech.glide.Glide;
 import com.gozde.osmanlitapp.R;
 import com.squareup.picasso.Picasso;
 
@@ -20,6 +22,7 @@ public class MediaFragment extends Fragment {
     private String url;
     private int type;
     private VideoView videoView;
+Context mContext;
 
 
     public static MediaFragment newInstance(Media media){
@@ -56,7 +59,8 @@ public class MediaFragment extends Fragment {
         }else {
             ImageView imageView = view.findViewById(R.id.image_slide);
             imageView.setVisibility(View.VISIBLE);
-            Picasso.get().load(Uri.parse(url)).into(imageView);
+            Glide.with(mContext).load(Uri.parse(url)).into(imageView);
+           // Picasso.get().load(Uri.parse(url)).into(imageView);
         }
         return view;
     }
@@ -76,5 +80,11 @@ public class MediaFragment extends Fragment {
             }
 
         }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.mContext=context;
     }
 }

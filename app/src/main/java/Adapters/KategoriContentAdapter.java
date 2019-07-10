@@ -1,5 +1,6 @@
 package Adapters;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 import Fragments.FragmentUrunDetay;
 import Models.Categorie;
 import Models.Product;
+
+import com.bumptech.glide.Glide;
 import com.gozde.osmanlitapp.R;
 import com.squareup.picasso.Picasso;
 
@@ -21,10 +24,11 @@ import java.util.List;
 public class KategoriContentAdapter extends RecyclerView.Adapter<KategoriContentAdapter.ViewHolder> {
 
     private List<Product> mProducts;
+    Context mContext;
 
-
-    public KategoriContentAdapter(List<Product> mProducts) {
+    public KategoriContentAdapter(List<Product> mProducts,Context mContext) {
         this.mProducts = mProducts;
+        this.mContext=mContext;
 
     }
 
@@ -40,7 +44,8 @@ public class KategoriContentAdapter extends RecyclerView.Adapter<KategoriContent
         Product product = mProducts.get(i);
 
        viewHolder.product_title.setText(product.getTitle());
-        Picasso.get().load(product.getProfile_image()).into(viewHolder.product_image);
+        Glide.with(mContext).load(product.getProfile_image()).into(viewHolder.product_image);
+      //  Picasso.get().load(product.getProfile_image()).into(viewHolder.product_image);
 
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

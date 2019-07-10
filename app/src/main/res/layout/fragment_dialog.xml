@@ -74,6 +74,7 @@
            android:textColor="#fff"/>
 
        <TextView
+           android:fontFamily="@font/allerta"
            android:layout_gravity="center_horizontal"
            android:id="@+id/txt_giris"
            android:layout_marginTop="20dp"

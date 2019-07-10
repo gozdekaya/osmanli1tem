@@ -1,6 +1,7 @@
 package Fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -34,6 +35,7 @@ KategoriUrun urunler;
 RecyclerView recyclerView;
 UrunlerAdapter adapter;
 ImageButton back;
+Context context;
     public FragmentUrunler() {
         // Required empty public constructor
     }
@@ -60,7 +62,7 @@ ImageButton back;
             @Override
             public void onResponse(Call<KategoriUrunResponse> call, Response<KategoriUrunResponse> response) {
                 products=response.body().getData().getProducts();
-                adapter=new UrunlerAdapter(products);
+                adapter=new UrunlerAdapter(products,context);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
 
@@ -79,5 +81,9 @@ ImageButton back;
 
     }
 
-
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context=context;
+    }
 }

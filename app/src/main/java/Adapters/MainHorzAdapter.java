@@ -3,6 +3,7 @@ package Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -21,10 +22,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.VideoView;
 
+import com.bumptech.glide.Glide;
 import com.gozde.osmanlitapp.R;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -37,7 +41,7 @@ public class MainHorzAdapter extends RecyclerView.Adapter<MainHorzAdapter.ViewHo
     List<Product> products;
     private LayoutInflater inflater;
     DisplayMetrics displayMetrics;
-
+    Context mContext;
     @Override
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
@@ -45,11 +49,17 @@ public class MainHorzAdapter extends RecyclerView.Adapter<MainHorzAdapter.ViewHo
 
     }
 
+    @Override
+    public long getItemId(int position) {
+        return super.getItemId(position);
+    }
+
     public MainHorzAdapter(List<Media> mediaList, Context context) {
         this.mediaList = mediaList;
 
        this.mediaList.add(new Media("http://api.osmanli.app-xr.com/storage/osm-m3u8/index.m3u8", 2));
         this.inflater = LayoutInflater.from(context);
+        this.mContext = context;
     }
 
     @NonNull
@@ -137,17 +147,55 @@ public class MainHorzAdapter extends RecyclerView.Adapter<MainHorzAdapter.ViewHo
 
 
 
-                Picasso.get().load(Uri.parse(selectedMedia.getUrl())).into(imageView);
+                Glide.with(mContext).load(selectedMedia.getUrl()).into(imageView);
+              //  new DownLoadImageTask(imageView).execute(selectedMedia.getUrl());
 
+                //Picasso.get().load(Uri.parse(selectedMedia.getUrl())).into(imageView);
+/*
                 imageView.getLayoutParams().height =displayMetrics.widthPixels;
                 imageView.getLayoutParams().width = displayMetrics.widthPixels;
-                imageView.requestLayout();
+                imageView.requestLayout();*/
                 Log.d("asd",String.valueOf(imageView.getLayoutParams().height));
                 Log.d("asd_1", String.valueOf(imageView.getLayoutParams().width));
             }
         }
     }
 
+    private class DownLoadImageTask extends AsyncTask<String,Void,Bitmap> {
+        ImageView imageView;
+
+        public DownLoadImageTask(ImageView imageView){
+            this.imageView = imageView;
+        }
+
+        /*
+            doInBackground(Params... params)
+                Override this method to perform a computation on a background thread.
+         */
+        protected Bitmap doInBackground(String...urls){
+            String urlOfImage = urls[0];
+            Bitmap logo = null;
+            try{
+                InputStream is = new URL(urlOfImage).openStream();
+                /*
+                    decodeStream(InputStream is)
+                        Decode an input stream into a bitmap.
+                 */
+                logo = BitmapFactory.decodeStream(is);
+            }catch(Exception e){ // Catch the download exception
+                e.printStackTrace();
+            }
+            return logo;
+        }
+
+        /*
+            onPostExecute(Result result)
+                Runs on the UI thread after doInBackground(Params...).
+         */
+        protected void onPostExecute(Bitmap result){
+            imageView.setImageBitmap(result);
+        }
+    }
 
 }
 

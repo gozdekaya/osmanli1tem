@@ -1,5 +1,6 @@
 package Adapters;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.gozde.osmanlitapp.R;
 import com.squareup.picasso.Picasso;
 
@@ -17,9 +19,11 @@ import Models.Cart;
 
 public class SepetOnizlemeAdapter extends RecyclerView.Adapter<SepetOnizlemeAdapter.ViewHolder> {
     private List<Cart> items;
+    Context mContext;
 
-    public SepetOnizlemeAdapter(List<Cart> items) {
+    public SepetOnizlemeAdapter(List<Cart> items,Context mContext) {
         this.items = items;
+        this.mContext=mContext;
     }
 
     @NonNull
@@ -32,7 +36,8 @@ public class SepetOnizlemeAdapter extends RecyclerView.Adapter<SepetOnizlemeAdap
 
     @Override
     public void onBindViewHolder(@NonNull SepetOnizlemeAdapter.ViewHolder viewHolder, int i) {
-        Picasso.get().load(items.get(i).getProduct().getProfile_image()).into(viewHolder.image);
+        Glide.with(mContext).load(items.get(i).getProduct().getProfile_image()).into(viewHolder.image);
+      //  Picasso.get().load(items.get(i).getProduct().getProfile_image()).into(viewHolder.image);
         viewHolder.text.setText(items.get(i).getProduct().getTitle());
         viewHolder.price.setText(items.get(i).getProduct().getPrice());
         viewHolder.count.setText(String.valueOf(items.get(i).getCount()));

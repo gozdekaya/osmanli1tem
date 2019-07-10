@@ -23,6 +23,7 @@
 
 
     <TextView
+        android:fontFamily="@font/allerta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#000"
@@ -39,6 +40,7 @@
 
     </Spinner>
     <TextView
+        android:fontFamily="@font/allerta"
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,6 +48,7 @@
         android:layout_margin="5dp"
         android:textColor="#000"/>
     <EditText
+        android:fontFamily="@font/allerta"
         android:textSize="14sp"
         android:background="@drawable/edittext_layout"
         android:id="@+id/et_title"
@@ -55,6 +58,7 @@
         android:padding="10dp"
         android:layout_margin="5dp"/>
     <TextView
+        android:fontFamily="@font/allerta"
         android:layout_margin="5dp"
         android:textColor="#000"
         android:id="@+id/error_title"
@@ -62,12 +66,14 @@
         android:layout_height="wrap_content"
         android:visibility="gone"/>
     <TextView
+        android:fontFamily="@font/allerta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/adres"
         android:textColor="#000"
         android:layout_margin="5dp"/>
     <EditText
+        android:fontFamily="@font/allerta"
         android:textSize="14sp"
         android:background="@drawable/edittext_layout"
         android:id="@+id/et_desc"
@@ -77,6 +83,7 @@
         android:padding="10dp"
         android:layout_margin="5dp"/>
     <TextView
+        android:fontFamily="@font/allerta"
         android:layout_margin="5dp"
         android:textColor="#000"
         android:id="@+id/error_address"
@@ -84,12 +91,14 @@
         android:layout_height="wrap_content"
         android:visibility="gone"/>
     <TextView
+        android:fontFamily="@font/allerta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/isim"
         android:textColor="#000"
         android:layout_margin="5dp"/>
 <EditText
+    android:fontFamily="@font/allerta"
     android:textSize="14sp"
     android:background="@drawable/edittext_layout"
     android:id="@+id/et_name"
@@ -99,6 +108,7 @@
     android:padding="10dp"
     android:layout_margin="5dp"/>
     <TextView
+        android:fontFamily="@font/allerta"
         android:layout_margin="5dp"
         android:textColor="#000"
         android:id="@+id/error_name"
@@ -106,6 +116,7 @@
         android:layout_height="wrap_content"
         android:visibility="gone"/>
     <TextView
+        android:fontFamily="@font/allerta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/telefon"
@@ -113,6 +124,7 @@
         android:layout_margin="5dp"/>
 
     <EditText
+        android:fontFamily="@font/allerta"
         android:textSize="14sp"
         android:background="@drawable/edittext_layout"
         android:id="@+id/et_num"
@@ -122,6 +134,7 @@
         android:padding="10dp"
         android:layout_margin="5dp"/>
     <TextView
+        android:fontFamily="@font/allerta"
         android:layout_margin="5dp"
         android:textColor="#000"
         android:id="@+id/error_phone"
@@ -129,7 +142,7 @@
         android:layout_height="wrap_content"
         android:visibility="gone"/>
     <TextView
-
+        android:fontFamily="@font/allerta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#000"
@@ -137,6 +150,7 @@
         android:layout_margin="5dp"/>
 
     <EditText
+        android:fontFamily="@font/allerta"
         android:textSize="14sp"
         android:background="@drawable/edittext_layout"
         android:id="@+id/et_post"
@@ -146,6 +160,7 @@
         android:padding="10dp"
         android:layout_margin="5dp"/>
     <TextView
+        android:fontFamily="@font/allerta"
         android:layout_margin="5dp"
         android:textColor="#000"
         android:id="@+id/error_postcode"
@@ -155,6 +170,7 @@
 
 
     <TextView
+        android:fontFamily="@font/allerta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#000"
@@ -162,6 +178,7 @@
         android:layout_margin="5dp"/>
 
     <EditText
+        android:fontFamily="@font/allerta"
         android:textSize="14sp"
         android:background="@drawable/edittext_layout"
         android:id="@+id/et_city"
@@ -171,6 +188,7 @@
         android:padding="10dp"
         android:layout_margin="5dp"/>
     <TextView
+        android:fontFamily="@font/allerta"
         android:layout_margin="5dp"
         android:textColor="#000"
         android:id="@+id/error_city"
@@ -178,6 +196,7 @@
         android:layout_height="wrap_content"
         android:visibility="gone"/>
     <TextView
+        android:fontFamily="@font/allerta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#000"
@@ -185,6 +204,7 @@
         android:layout_margin="5dp"/>
 
     <EditText
+        android:fontFamily="@font/allerta"
         android:textSize="14sp"
         android:background="@drawable/edittext_layout"
         android:id="@+id/et_town"
@@ -194,6 +214,7 @@
         android:padding="10dp"
         android:layout_margin="5dp"/>
     <TextView
+        android:fontFamily="@font/allerta"
         android:layout_margin="5dp"
         android:textColor="#000"
         android:id="@+id/error_town"

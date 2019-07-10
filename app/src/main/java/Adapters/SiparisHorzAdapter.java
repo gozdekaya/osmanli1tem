@@ -1,5 +1,6 @@
 package Adapters;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.gozde.osmanlitapp.R;
 import com.squareup.picasso.Picasso;
 
@@ -17,9 +19,11 @@ import Models.Product;
 
 public class SiparisHorzAdapter extends RecyclerView.Adapter<SiparisHorzAdapter.ViewHolder> {
     List<Item> items;
+    Context mContext;
 
-    public SiparisHorzAdapter(List<Item> items) {
+    public SiparisHorzAdapter(List<Item> items,Context mContext) {
         this.items = items;
+        this.mContext=mContext;
     }
 
     @NonNull
@@ -31,7 +35,8 @@ public class SiparisHorzAdapter extends RecyclerView.Adapter<SiparisHorzAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull SiparisHorzAdapter.ViewHolder viewHolder, int i) {
-        Picasso.get().load(items.get(i).getProduct().getProfile_image()).into(viewHolder.imagepro);
+        Glide.with(mContext).load(items.get(i).getProduct().getProfile_image()).into(viewHolder.imagepro);
+      //  Picasso.get().load(items.get(i).getProduct().getProfile_image()).into(viewHolder.imagepro);
     }
 
     @Override

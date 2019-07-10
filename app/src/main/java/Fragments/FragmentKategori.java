@@ -30,7 +30,7 @@ import retrofit2.Response;
 
 public class FragmentKategori extends Fragment {
 private KategoriUrun mProducts;
-
+Context mContext;
 SubKategoriAdapter adapter;
 TextView kat_title;
 ImageButton buttonback;
@@ -61,7 +61,7 @@ Boolean isConnected = false;
                public void onResponse(Call<KategoriUrunResponse> call, Response<KategoriUrunResponse> response) {
                    mProducts=response.body().getData();
                    kat_title.setText(title);
-                   adapter=new SubKategoriAdapter(mProducts.subCategories);
+                   adapter=new SubKategoriAdapter(mProducts.subCategories,mContext);
                    recyclerView.setAdapter(adapter);
                    recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
 
@@ -88,6 +88,7 @@ Boolean isConnected = false;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        this.mContext=context;
         if (checkConnection()) isConnected = true;
         else isConnected = false;
     }

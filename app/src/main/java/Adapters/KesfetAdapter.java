@@ -1,5 +1,6 @@
 package Adapters;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.gozde.osmanlitapp.R;
 import com.squareup.picasso.Picasso;
 
@@ -21,9 +23,11 @@ import Models.Product;
 
 public class KesfetAdapter extends RecyclerView.Adapter<KesfetAdapter.ViewHolder>{
  List<Product> mProducts;
+ Context mContext;
 
-    public KesfetAdapter(List<Product> mProducts) {
+    public KesfetAdapter(List<Product> mProducts,Context mContext) {
         this.mProducts = mProducts;
+        this.mContext=mContext;
     }
 
     @NonNull
@@ -37,7 +41,9 @@ public class KesfetAdapter extends RecyclerView.Adapter<KesfetAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
     viewHolder.name.setText(mProducts.get(i).getTitle());
     viewHolder.price.setText(mProducts.get(i).getPrice());
-        Picasso.get().load(mProducts.get(i).getProfile_image()).into(viewHolder.image);
+
+        Glide.with(mContext).load(mProducts.get(i).getProfile_image()).into(viewHolder.image);
+       // Picasso.get().load(mProducts.get(i).getProfile_image()).into(viewHolder.image);
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

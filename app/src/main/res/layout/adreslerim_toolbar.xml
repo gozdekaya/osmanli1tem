@@ -23,6 +23,7 @@ android:clickable="true"
         android:src="@drawable/ic_arrow_back_black_24dp"
         android:background="@null"/>
    <TextView
+       android:fontFamily="@font/allerta"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_centerHorizontal="true"

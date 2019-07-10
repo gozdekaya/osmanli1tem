@@ -15,6 +15,7 @@
 
 
         <TextView
+            android:fontFamily="@font/allerta"
             android:layout_weight="0.8"
             android:id="@+id/adres_title"
             android:layout_width="wrap_content"

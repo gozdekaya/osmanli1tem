@@ -83,7 +83,7 @@ public class FragmentSearch extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+       // getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         itemPicker = (DiscreteScrollView) view.findViewById(R.id.picker);
         layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
         recyclerViewkat = view.findViewById(R.id.recycler_kat);
@@ -111,7 +111,7 @@ public class FragmentSearch extends Fragment {
                 layoutManager1 = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
                 recyclerView = view.findViewById(R.id.recycler_kesfet);
                 recyclerView.setLayoutManager(layoutManager1);
-                adapterk = new KesfetAdapter(products);
+                adapterk = new KesfetAdapter(products,mContext);
                 recyclerView.setAdapter(adapterk);
             }
 
@@ -151,7 +151,7 @@ public class FragmentSearch extends Fragment {
 
                 products = response.body().getData().getProducts();
 
-                discreteAdapter = new SearchDiscreteAdapter(products);
+                discreteAdapter = new SearchDiscreteAdapter(products,mContext);
                 scrollAdapter = InfiniteScrollAdapter.wrap(discreteAdapter);
 
                 itemPicker.setItemTransformer(new ScaleTransformer.Builder().setMinScale(0.6f).build());
@@ -185,32 +185,34 @@ public class FragmentSearch extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                keyword = editText.getText().toString();
+                keyword = editText.getText().toString().trim();
                 if (keyword.length() > 3) {
                     Call<SearchResponse> call = ApiClient.getInstance(getContext()).getApi().urunara("application/json", keyword);
                     call.enqueue(new Callback<SearchResponse>() {
                         @Override
                         public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
-                            items = response.body().getData();
-                            if (items.size() != 0) {
-                                recyclerViewkat.setVisibility(View.GONE);
-                                itemPicker.setVisibility(View.GONE);
-                                recyclerViews.setVisibility(View.VISIBLE);
-                                recyclerView.setVisibility(View.GONE);
-                                recyclerView1.setVisibility(View.GONE);
-                                popular.setVisibility(View.GONE);
-                                lastviews.setVisibility(View.GONE);
-                                searchAdapter = new SearchAdapter(items);
-                                recyclerViews.setAdapter(searchAdapter);
+                            if (response.body() != null) {
+                                items = response.body().getData();
+                                if (items.size() != 0) {
+                                    recyclerViewkat.setVisibility(View.GONE);
+                                    itemPicker.setVisibility(View.GONE);
+                                    recyclerViews.setVisibility(View.VISIBLE);
+                                    recyclerView.setVisibility(View.GONE);
+                                    recyclerView1.setVisibility(View.GONE);
+                                    popular.setVisibility(View.GONE);
+                                    lastviews.setVisibility(View.GONE);
+                                    searchAdapter = new SearchAdapter(items,mContext);
+                                    recyclerViews.setAdapter(searchAdapter);
 
-                            } else {
+                                } else {
 
-                                recyclerViews.setVisibility(View.GONE);
-                                recyclerView.setVisibility(View.GONE);
-                                recyclerView1.setVisibility(View.GONE);
-                                popular.setVisibility(View.GONE);
-                                lastviews.setVisibility(View.GONE);
-                                noproduct.setVisibility(View.VISIBLE);
+                                    recyclerViews.setVisibility(View.GONE);
+                                    recyclerView.setVisibility(View.GONE);
+                                    recyclerView1.setVisibility(View.GONE);
+                                    popular.setVisibility(View.GONE);
+                                    lastviews.setVisibility(View.GONE);
+                                    noproduct.setVisibility(View.VISIBLE);
+                                }
                             }
 
                         }
@@ -249,7 +251,7 @@ public class FragmentSearch extends Fragment {
                 LinearLayoutManager layoutManager1 = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
                 recyclerView1 = view.findViewById(R.id.recycler_display);
                 recyclerView1.setLayoutManager(layoutManager1);
-                RecentAdapter adapter1 = new RecentAdapter(products);
+                RecentAdapter adapter1 = new RecentAdapter(products,mContext);
                 recyclerView1.setAdapter(adapter1);
             }
 

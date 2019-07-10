@@ -22,9 +22,11 @@ import Models.Product;
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
 
     private List<Product> items;
+    Context mContext;
 
-    public SearchAdapter(List<Product> items) {
+    public SearchAdapter(List<Product> items,Context mContext) {
         this.items = items;
+        this.mContext=mContext;
     }
 
     @NonNull

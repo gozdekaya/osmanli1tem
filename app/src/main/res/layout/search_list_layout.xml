@@ -7,6 +7,7 @@
     android:background="@drawable/grey_line"
     android:layout_margin="5dp">
     <TextView
+        android:fontFamily="@font/allerta"
         android:id="@+id/proname"
         android:textColor="#000"
         android:layout_margin="10dp"

@@ -1,5 +1,6 @@
 package Adapters;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.gozde.osmanlitapp.R;
 import com.squareup.picasso.Picasso;
 
@@ -22,9 +24,11 @@ import Models.Categorie;
 public class SubKategoriAdapter extends RecyclerView.Adapter<SubKategoriAdapter.ViewHolder>{
 
     List<Categorie> mCategories;
+    Context mContext;
 
-    public SubKategoriAdapter(List<Categorie> mCategories) {
+    public SubKategoriAdapter(List<Categorie> mCategories,Context mContext) {
         this.mCategories = mCategories;
+        this.mContext=mContext;
     }
 
     @NonNull
@@ -39,7 +43,8 @@ public class SubKategoriAdapter extends RecyclerView.Adapter<SubKategoriAdapter.
         Categorie categorie = mCategories.get(i);
 
             viewHolder.sub_title.setText(categorie.getTitle());
-            Picasso.get().load(categorie.getMedia()).into(viewHolder.sub_image);
+        Glide.with(mContext).load(categorie.getMedia()).into(viewHolder.sub_image);
+           // Picasso.get().load(categorie.getMedia()).into(viewHolder.sub_image);
 
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

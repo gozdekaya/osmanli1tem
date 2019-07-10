@@ -1,6 +1,7 @@
 package Fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -42,6 +43,7 @@ public class FragmentSiparisOnizleme extends Fragment {
 RecyclerView recyclerView;
 DataSepet items;
 Button btnOnay;
+Context mContext;
 ImageButton backbtn;
 TextView toplam,faturadres,tesadres;
 String fatura,teslimat, teslimatAdresId, faturaAdresId,holdername,cvvno,kartno,expmonth,expyear,cardId;
@@ -99,7 +101,7 @@ if (isRegisteredCard){
             @Override
             public void onResponse(Call<CartResponse> call, Response<CartResponse> response) {
                 items=response.body().getData();
-                SepetOnizlemeAdapter adapter=new SepetOnizlemeAdapter(items.getCartList());
+                SepetOnizlemeAdapter adapter=new SepetOnizlemeAdapter(items.getCartList(),mContext);
                 recyclerView.setAdapter(adapter);
                 toplam.setText(items.getTotalPrice());
             }
@@ -164,5 +166,11 @@ if (isRegisteredCard){
 
             }
         });
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.mContext=context;
     }
 }
