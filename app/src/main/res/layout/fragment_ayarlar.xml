@@ -68,6 +68,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3"
+            android:layout_gravity="center_horizontal"
+
             android:textSize="20sp"
             android:background="@null"/>
         <TextView
@@ -91,6 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="3"
+        android:layout_gravity="center_horizontal"
         android:textSize="20sp"
         android:background="@null"/>
     <TextView
@@ -104,6 +107,7 @@
 
 </LinearLayout>
     <TextView
+        android:id="@+id/username"
         android:fontFamily="@font/allerta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -119,7 +123,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <ImageView
-            android:background="#DCDCDC"
+            android:background="#f6f6f6"
             android:layout_width="0dp"
             android:src="@drawable/ic_search_b"
             android:layout_weight="1"
@@ -135,7 +139,7 @@
 
             android:padding="5dp"
             android:hint="@string/ara"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:background="@drawable/edittextprofile_layout"/>
     </LinearLayout>
 

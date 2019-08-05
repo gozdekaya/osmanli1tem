@@ -50,7 +50,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class FragmentUrunDetay extends Fragment {
 
-     TextView product_title,product_desc,product_price,addcart,dis_price,normalprice;
+     TextView product_title,product_desc,product_price,addcart,dis_price,normalprice,indirim_baslik;
     ViewPager viewPager;
     SliderAdapter adapter;
     ProgressBar mProgressBar;
@@ -72,7 +72,7 @@ public class FragmentUrunDetay extends Fragment {
         final View view= inflater.inflate(R.layout.product_details,container,false);
 
 
-
+            indirim_baslik=view.findViewById(R.id.indirim_baslik);
 
 normalprice=view.findViewById(R.id.normalprice);
 
@@ -110,6 +110,7 @@ normalprice=view.findViewById(R.id.normalprice);
                          } else {
                              product.setIs_liked(true);
                              cbfav.setButtonDrawable(R.drawable.ic_favorite_red_24dp);
+                            Toast.makeText(mContext,"Ürün Favorilere Eklendi",Toast.LENGTH_SHORT).show();
                          }
                      }
 
@@ -179,11 +180,13 @@ normalprice=view.findViewById(R.id.normalprice);
                     mProgressBar.setVisibility(View.GONE);
 
                           if (product.getDiscount()==null){
+                              indirim_baslik.setVisibility(View.GONE);
                               dis_price.setVisibility(View.GONE);
                               product_price.setVisibility(View.GONE);
                               normalprice.setText(product.getPrice());
                               normalprice.setVisibility(View.VISIBLE);
                           }else{
+                              indirim_baslik.setText(product.getDiscount().getDescription());
                               normalprice.setText(product.getPrice());
                              normalprice.setVisibility(View.GONE);
                               dis_price.setVisibility(View.VISIBLE);

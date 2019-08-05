@@ -54,8 +54,9 @@ public class MainHorzAdapter extends RecyclerView.Adapter<MainHorzAdapter.ViewHo
         return super.getItemId(position);
     }
 
-    public MainHorzAdapter(List<Media> mediaList, Context context) {
+    public MainHorzAdapter(List<Media> mediaList, Context context,List<Product> products) {
         this.mediaList = mediaList;
+        this.products=products;
 
        this.mediaList.add(new Media("http://api.osmanli.app-xr.com/storage/osm-m3u8/index.m3u8", 2));
         this.inflater = LayoutInflater.from(context);
@@ -72,25 +73,25 @@ public class MainHorzAdapter extends RecyclerView.Adapter<MainHorzAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MainHorzAdapter.ViewHolder viewHolder, int i) {
-  //      Product myPrduct=products.get(i);
+        Product myPrduct=products.get(i);
         Media myMedia = mediaList.get(i);
         try {
             viewHolder.setData(myMedia, i);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        viewHolder.imageView.setOnClickListener(new View.OnClickListener() {
+      /*  viewHolder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                FragmentUrunDetay fragmentUrunDetay=new FragmentUrunDetay();
-//                Bundle args=new Bundle();
-//                String string=myPrduct.getId();
-//                args.putString("ID",string);
-//                fragmentUrunDetay.setArguments(args);
-//                AppCompatActivity activity = (AppCompatActivity) v.getContext();
-//                activity.getSupportFragmentManager().beginTransaction().replace(R.id.container,fragmentUrunDetay).addToBackStack(null).commit();
+                FragmentUrunDetay fragmentUrunDetay=new FragmentUrunDetay();
+                Bundle args=new Bundle();
+                String string=myPrduct.getId();
+                args.putString("ID",string);
+                fragmentUrunDetay.setArguments(args);
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.container,fragmentUrunDetay).addToBackStack(null).commit();
             }
-        });
+        });*/
     }
 
     @Override

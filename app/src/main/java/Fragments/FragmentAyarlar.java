@@ -55,7 +55,7 @@ public class FragmentAyarlar extends Fragment {
 ImageView settings,more;
 CircleImageView imageuser;
 LinearLayout layoutlin;
-TextView pronum,favoriler,sipnum,siparislerim;
+TextView pronum,favoriler,sipnum,siparislerim,username;
     private List<Favori> products;
     ProfileFavAdapter adapter;
 RecyclerView recyclerfav,recyclersip;
@@ -75,6 +75,17 @@ Context mContext;
     }
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ayarlar, container, false);
+        username=view.findViewById(R.id.username);
+        sipnum=view.findViewById(R.id.sipnum);
+        pronum=view.findViewById(R.id.pronum);
+        favoriler=view.findViewById(R.id.favoriler);
+        imageuser=view.findViewById(R.id.imageuser);
+        recyclersip=view.findViewById(R.id.recyclersip);
+        settings=view.findViewById(R.id.settings);
+        recyclerfav=view.findViewById(R.id.recyclerfav);
+
+        pronum.setTextColor(getResources().getColor(R.color.blue));
+        favoriler.setTextColor(getResources().getColor(R.color.blue));
 
         linfav=view.findViewById(R.id.linfav);
         linsip=view.findViewById(R.id.linsip);
@@ -118,13 +129,7 @@ Context mContext;
                 dialogFragmentMore.show(getFragmentManager(),"DialogMore");
             }
         });
-        sipnum=view.findViewById(R.id.sipnum);
-        pronum=view.findViewById(R.id.pronum);
-        favoriler=view.findViewById(R.id.favoriler);
-        imageuser=view.findViewById(R.id.imageuser);
-        recyclersip=view.findViewById(R.id.recyclersip);
-        settings=view.findViewById(R.id.settings);
-        recyclerfav=view.findViewById(R.id.recyclerfav);
+
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,6 +143,7 @@ responseCall.enqueue(new Callback<UserProfileResponse>() {
     @Override
     public void onResponse(Call<UserProfileResponse> call, Response<UserProfileResponse> response) {
         UserProfile userProfile=response.body().getData();
+        username.setText(userProfile.getName());
         Glide.with(mContext).load(userProfile.getPicture()).into(imageuser);
       //  Picasso.get().load(userProfile.getPicture()).into(imageuser);
     }

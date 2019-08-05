@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
-                android:background="#DCDCDC"
+                android:background="#F6F6F6"
                 android:layout_width="0dp"
                 android:src="@drawable/ic_search_b"
                 android:layout_weight="1"
@@ -41,7 +41,7 @@
                 android:singleLine="true"
                 android:padding="5dp"
                 android:hint="@string/ara"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 android:background="@drawable/edittextprofile_layout"/>
         </LinearLayout>
         <com.yarolegovich.discretescrollview.DiscreteScrollView

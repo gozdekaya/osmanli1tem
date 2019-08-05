@@ -1,6 +1,7 @@
 package Adapters;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.gozde.osmanlitapp.R;
 import com.gozde.osmanlitapp.SharedPrefManager;
 import com.squareup.picasso.Picasso;
@@ -29,12 +31,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder>  {
-
+Context mContext;
     private List<Cart> items;
     private UpdateInstructions updIns;
 
-    public CartAdapter() {
-
+    public CartAdapter(Context mContext) {
+        this.mContext=mContext;
     }
 
     public List<Cart> getItems() {
@@ -60,26 +62,29 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder>  {
        final int currentCount = items.get(i).getCount();
        viewHolder.count.setText(String.valueOf(currentCount));
        viewHolder.title_product.setText(items.get(i).getProduct().getTitle() +"      "+ items.get(i).getProduct().getPrice());
-       Picasso.get().load(items.get(i).getProduct().getProfile_image()).into(viewHolder.image_product);
+        Glide.with(mContext).load(items.get(i).getProduct().getProfile_image()).into(viewHolder.image_product);
+     //  Picasso.get().load(items.get(i).getProduct().getProfile_image()).into(viewHolder.image_product);
        viewHolder.decrease.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               ApiInterface apiInterface1=ApiClient.getInstance(v.getContext()).getApi();
-               String productID=items.get(i).getProduct().getId();
-               String bearer= SharedPrefManager.getInstance(v.getContext()).getToken();
-               Call<DeleteCartResponse> call1=apiInterface1.urunsil("Bearer " +bearer,"application/json",productID);
-               call1.enqueue(new Callback<DeleteCartResponse>() {
-                   @Override
-                   public void onResponse(Call<DeleteCartResponse> call, Response<DeleteCartResponse> response) {
-                       viewHolder.count.setText(String.valueOf(Integer.valueOf(viewHolder.count.getText().toString())-1));
-                       updIns.update();
-                   }
+               if (items.get(i).getCount()>1){
+                   ApiInterface apiInterface1=ApiClient.getInstance(v.getContext()).getApi();
+                   String productID=items.get(i).getProduct().getId();
+                   String bearer= SharedPrefManager.getInstance(v.getContext()).getToken();
+                   Call<DeleteCartResponse> call1=apiInterface1.urunsil("Bearer " +bearer,"application/json",productID);
+                   call1.enqueue(new Callback<DeleteCartResponse>() {
+                       @Override
+                       public void onResponse(Call<DeleteCartResponse> call, Response<DeleteCartResponse> response) {
+                           viewHolder.count.setText(String.valueOf(Integer.valueOf(viewHolder.count.getText().toString())-1));
+                           updIns.update();
+                       }
 
-                   @Override
-                   public void onFailure(Call<DeleteCartResponse> call, Throwable t) {
-                          t.printStackTrace();
-                   }
-               });
+                       @Override
+                       public void onFailure(Call<DeleteCartResponse> call, Throwable t) {
+                           t.printStackTrace();
+                       }
+                   });}
+
            }
        });
        viewHolder.increase.setOnClickListener(new View.OnClickListener() {
@@ -110,27 +115,27 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder>  {
 
            }
        });
-       viewHolder.delete.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               AlertDialog.Builder adb = new AlertDialog.Builder(new ContextThemeWrapper(v.getContext(),R.style.AlertDialogCustom));
-               adb.setTitle("Sepetten Çıkarılsın Mı?");
-               adb.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
-                   @Override
-                   public void onClick(DialogInterface dialog, int which) {
-
-                   }
-               });
-               adb.setNegativeButton("İptal", new DialogInterface.OnClickListener() {
-                   @Override
-                   public void onClick(DialogInterface dialog, int which) {
-                       dialog.dismiss();
-                   }
-               });
-               adb.show();
-
-           }
-       });
+//       viewHolder.delete.setOnClickListener(new View.OnClickListener() {
+//           @Override
+//           public void onClick(View v) {
+//               AlertDialog.Builder adb = new AlertDialog.Builder(new ContextThemeWrapper(v.getContext(),R.style.AlertDialogCustom));
+//               adb.setTitle("Sepetten Çıkarılsın Mı?");
+//               adb.setPositiveButton("Tamam", new DialogInterface.OnClickListener() {
+//                   @Override
+//                   public void onClick(DialogInterface dialog, int which) {
+//
+//                   }
+//               });
+//               adb.setNegativeButton("İptal", new DialogInterface.OnClickListener() {
+//                   @Override
+//                   public void onClick(DialogInterface dialog, int which) {
+//                       dialog.dismiss();
+//                   }
+//               });
+//               adb.show();
+//
+//           }
+//       });
     }
 
     @Override
@@ -150,7 +155,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder>  {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             count=itemView.findViewById(R.id.count);
-            delete=itemView.findViewById(R.id.delete);
+          //  delete=itemView.findViewById(R.id.delete);
             image_product=itemView.findViewById(R.id.image_product);
             title_product=itemView.findViewById(R.id.title_product);
             increase=itemView.findViewById(R.id.increase);

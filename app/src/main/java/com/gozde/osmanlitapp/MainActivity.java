@@ -8,12 +8,15 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.content.res.Configuration;
 import android.support.annotation.NonNull;
+import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -33,7 +36,9 @@ import Fragments.FragmentHome;
 import Fragments.FragmentKesfet;
 import Fragments.FragmentProfile;
 import Fragments.FragmentSearch;
+import Models.Cart;
 import Models.DataSepet;
+import Models.UpdateInstructions;
 import Responses.CartResponse;
 import Utils.ApiClient;
 import Utils.ApiInterface;
@@ -42,7 +47,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-
+    private UpdateInstructions updIns;
     SharedPreferences preferences;
     Boolean isFirst;
     DataSepet items;
@@ -95,6 +100,38 @@ public class MainActivity extends AppCompatActivity {
         });*/
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+        BottomNavigationMenuView bottomNavigationMenuView =
+                (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
+        View v = bottomNavigationMenuView.getChildAt(2);
+        BottomNavigationItemView itemView = (BottomNavigationItemView) v;
+
+        View badge = LayoutInflater.from(this)
+                .inflate(R.layout.badge_layout, itemView, true);
+        TextView textView=badge.findViewById(R.id.notification_badge);
+        Call<CartResponse> call = ApiClient.getInstance(MainActivity.this).getApi().sepeturunler("Bearer " + SharedPrefManager.getInstance(MainActivity.this).getToken(), "application/json");
+        call.enqueue(new Callback<CartResponse>() {
+            @Override
+            public void onResponse(Call<CartResponse> call, Response<CartResponse> response) {
+               items=response.body().getData();
+               final int currentcount=items.getTotalCount();
+               if (items.getCartList().size()==0){
+                   itemView.setVisibility(View.GONE);
+               }else {
+                   itemView.setVisibility(View.VISIBLE);
+                   textView.setText(String.valueOf(currentcount));
+               }
+
+            }
+
+            @Override
+            public void onFailure(Call<CartResponse> call, Throwable t) {
+
+            }
+        });
+
+
+
+
 
 
         final Dialog dialog=new Dialog(MainActivity.this);

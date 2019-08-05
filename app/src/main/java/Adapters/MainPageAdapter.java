@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -96,6 +97,7 @@ public class MainPageAdapter extends RecyclerView.Adapter<MainPageAdapter.ViewHo
                             } else {
                                 myProduct.setIs_liked(true);
                                 viewHolder.cbfav.setButtonDrawable(R.drawable.ic_favorite_red_24dp);
+                                Toast.makeText(context,"Ürün Favorilere Eklendi",Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -124,7 +126,20 @@ public class MainPageAdapter extends RecyclerView.Adapter<MainPageAdapter.ViewHo
         //burası
      viewHolder.setData(myProduct,i);
      viewHolder.name.setText(myProduct.getTitle());
-     viewHolder.price.setText(myProduct.getPrice());
+     if (myProduct.getDiscount()==null){
+         viewHolder.price.setText(myProduct.getPrice());
+         viewHolder.indirim_baslik.setVisibility(View.GONE);
+     }else {
+         viewHolder.indirim_baslik.setVisibility(View.VISIBLE);
+         viewHolder.indirim_baslik.setText(myProduct.getDiscount().getDescription());
+         viewHolder.disprice.setVisibility(View.VISIBLE);
+         viewHolder.disprice.setText(myProduct.getPrice());
+         viewHolder.price.setText(myProduct.getDiscount().getDiscounted_price());
+     }
+
+
+
+
      description=myProduct.getDescription();
      halfdescription = description;
      if (description.length() > 10) halfdescription=description.substring(0,6)+"...";
@@ -185,19 +200,24 @@ public class MainPageAdapter extends RecyclerView.Adapter<MainPageAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-       TextView price,name,desc;
+       TextView price,name,desc,disprice,indirim_baslik;
        CheckBox cbfav;
+       RelativeLayout rel1;
         public ViewHolder(@NonNull View itemView) {
 
             super(itemView);
+            rel1=itemView.findViewById(R.id.rel1);
+            indirim_baslik=itemView.findViewById(R.id.indirim_baslik);
+            disprice=itemView.findViewById(R.id.disprice);
             cbfav=itemView.findViewById(R.id.checkBox);
             price=itemView.findViewById(R.id.price_item);
             name=itemView.findViewById(R.id.name_item);
+
          //   desc=itemView.findViewById(R.id.desc_item);
             rv=itemView.findViewById(R.id.rv_horizontal);
         }
         public void setData(Product selectedProduct,int position){
-            final MainHorzAdapter mRecycAdapter = new MainHorzAdapter(selectedProduct.getMedia(),context);
+            final MainHorzAdapter mRecycAdapter = new MainHorzAdapter(selectedProduct.getMedia(),context,productList);
             mRecycAdapter.setHasStableIds(true);
             rv.setAdapter(mRecycAdapter);
             final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
@@ -213,6 +233,7 @@ public class MainPageAdapter extends RecyclerView.Adapter<MainPageAdapter.ViewHo
             if (selectedProduct.getIs_liked()){
                 selectedProduct.setIs_liked(true);
                 cbfav.setButtonDrawable(R.drawable.ic_favorite_red_24dp);
+
                 //viewHolder.cbfav.setChecked(true);
             }else {
                 selectedProduct.setIs_liked(false);

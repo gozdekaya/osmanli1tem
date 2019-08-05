@@ -38,6 +38,7 @@ import java.util.List;
 
 import Adapters.ExploreAdapter;
 import Adapters.KategoriAdapter;
+import Adapters.KategoriSearchAdapter;
 import Adapters.KesfetAdapter;
 import Adapters.RecentAdapter;
 import Adapters.SearchAdapter;
@@ -61,7 +62,7 @@ public class FragmentSearch extends Fragment {
     LinearLayoutManager layoutManager1;
     RecyclerView recyclerView;
     RecyclerView recyclerView1;
-    KategoriAdapter kategoriAdapter;
+    KategoriSearchAdapter kategoriAdapter;
     private LinearLayoutManager layoutManager;
     SearchAdapter searchAdapter;
     List<Product> items;
@@ -131,7 +132,7 @@ public class FragmentSearch extends Fragment {
             public void onResponse(Call<CategorieResponse> call, Response<CategorieResponse> response) {
                 mKategoriler = response.body().getData();
 
-                kategoriAdapter = new KategoriAdapter(mKategoriler, mContext);
+                kategoriAdapter = new KategoriSearchAdapter(mKategoriler, mContext);
                 recyclerViewkat.setAdapter(kategoriAdapter);
                 recyclerViewkat.setLayoutManager(layoutManager);
             }

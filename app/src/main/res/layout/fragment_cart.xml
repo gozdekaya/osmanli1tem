@@ -13,15 +13,12 @@
     android:id="@+id/lin1">
     <include layout="@layout/sepet_toolbar"/>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
 
-        android:background="#fff">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="10"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -76,7 +73,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_sepet"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
             </android.support.v7.widget.RecyclerView>
 
@@ -142,13 +139,14 @@
                 android:layout_height="wrap_content"
                 android:visibility="invisible" />
         </LinearLayout>
-    </ScrollView>
+
     <Button
+        android:layout_alignParentBottom="true"
         android:id="@+id/button_payment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_margin="15dp"
-
+android:layout_weight="1"
         android:background="@color/green"
         android:text="@string/satin_al"
         android:textColor="#fff" />

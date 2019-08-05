@@ -9,12 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.gozde.osmanlitapp.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +20,7 @@ import java.util.List;
 import Fragments.FragmentUrunDetay;
 import Models.Favori;
 import Models.Product;
+import Utils.RoundedCornersTransformation;
 
 public class ProfileFavAdapter extends RecyclerView.Adapter<ProfileFavAdapter.ViewHolder>{
     List<Favori> products = new ArrayList<>();
@@ -58,6 +57,7 @@ Context mContetx;
         viewHolder.tvname.setText(product.getTitle());
         viewHolder.tvprice.setText(product.getPrice());
         Glide.with(mContetx).load(product.getProfile_image())
+                .transform(new RoundedCornersTransformation(50, 10))
                 .into(viewHolder.image);
        // Picasso.get().load(product.getProfile_image()).into(viewHolder.image);
     }

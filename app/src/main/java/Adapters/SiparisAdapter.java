@@ -41,7 +41,7 @@ public class SiparisAdapter extends RecyclerView.Adapter<SiparisAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull SiparisAdapter.ViewHolder viewHolder, final int i) {
         Siparis siparis=orders.get(i);
-
+        viewHolder.toplam.setText(orders.get(i).getTotalPrice());
 
        viewHolder.tarih.setText(orders.get(i).getDate());
       // viewHolder.toplam.setText(orders.get(i).getToplam);
@@ -74,6 +74,7 @@ public class SiparisAdapter extends RecyclerView.Adapter<SiparisAdapter.ViewHold
         ImageView img_order;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
             rchorz=itemView.findViewById(R.id.recycler_products);
             detay=(TextView)itemView.findViewById(R.id.display_detay);
             tarih=(TextView)itemView.findViewById(R.id.tv_tarih);

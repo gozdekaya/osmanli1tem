@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.gozde.osmanlitapp.R;
@@ -44,6 +45,7 @@ public class SearchDiscreteAdapter extends RecyclerView.Adapter<SearchDiscreteAd
     public void onBindViewHolder(@NonNull SearchDiscreteAdapter.ViewHolder viewHolder, int i) {
                 final Product product =products.get(i);
         Glide.with(mContext).load(product.getProfile_image()).into(viewHolder.image);
+        viewHolder.textView.setText(product.getTitle());
      //   Picasso.get().load(product.getProfile_image()).into(viewHolder.image);
         viewHolder.image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,9 +68,12 @@ public class SearchDiscreteAdapter extends RecyclerView.Adapter<SearchDiscreteAd
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
+        TextView textView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             image=itemView.findViewById(R.id.image);
+            textView=itemView.findViewById(R.id.itemname);
+
         }
     }
 }
