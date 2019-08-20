@@ -67,7 +67,7 @@ Context mContext;
        viewHolder.decrease.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               if (items.get(i).getCount()>1){
+               if (items.get(i).getCount()>0){
                    ApiInterface apiInterface1=ApiClient.getInstance(v.getContext()).getApi();
                    String productID=items.get(i).getProduct().getId();
                    String bearer= SharedPrefManager.getInstance(v.getContext()).getToken();

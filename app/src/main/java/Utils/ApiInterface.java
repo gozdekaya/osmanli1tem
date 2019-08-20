@@ -12,6 +12,7 @@ import Responses.CountryResponse;
 import Responses.CreditCardResponse;
 import Responses.DeleteCartResponse;
 import Responses.FavoriResponse;
+import Responses.InfoResponse;
 import Responses.KategoriUrunResponse;
 import Responses.LikeResponse;
 import Responses.LoginResponse;
@@ -201,6 +202,11 @@ Call<UrunDetayResponse>urundetaylogin(
         @Path("productId") String productId
 );
 
+//SEPETTEN KOMPLE ÜRÜN SİL
+
+  //  @DELETE("shopping-cards/{productId}/all")
+
+
     //SEARCH
     @FormUrlEncoded
     @POST("search-product")
@@ -274,6 +280,14 @@ Call<UrunDetayResponse>urundetaylogin(
            @Header("Authorization") String authorization,
            @Header("Accept") String accept
    );
+
+   //USER INFO
+    @GET("info")
+    Call<InfoResponse> userinfo(
+            @Header("Authorization") String authorization,
+            @Header("Accept") String accept
+    );
+
 
    //Sozleşme
     @FormUrlEncoded

@@ -33,10 +33,12 @@ import Adapters.ExploreAdapter;
 import Adapters.ProfileFavAdapter;
 import Adapters.SiparisAdapter;
 import Models.Favori;
+import Models.Info;
 import Models.Product;
 import Models.Siparis;
 import Models.UserProfile;
 import Responses.FavoriResponse;
+import Responses.InfoResponse;
 import Responses.ProductResponse;
 import Responses.SiparisResponse;
 import Responses.UserProfileResponse;
@@ -137,7 +139,20 @@ Context mContext;
             }
         });
 
+Call<InfoResponse> infoResponseCall= ApiClient.getInstance(getContext()).getApi().userinfo("Bearer " + SharedPrefManager.getInstance(getContext()).getToken(),"application/json");
+infoResponseCall.enqueue(new Callback<InfoResponse>() {
+    @Override
+    public void onResponse(Call<InfoResponse> call, Response<InfoResponse> response) {
+        Info info = response.body().getData();
+        pronum.setText(String.valueOf(info.getFavorites_count()));
+        sipnum.setText(String.valueOf(info.getOrders_count()));
+    }
 
+    @Override
+    public void onFailure(Call<InfoResponse> call, Throwable t) {
+
+    }
+});
 Call<UserProfileResponse> responseCall=ApiClient.getInstance(getContext()).getApi().userprofile("Bearer " + SharedPrefManager.getInstance(getContext()).getToken(),"application/json");
 responseCall.enqueue(new Callback<UserProfileResponse>() {
     @Override
